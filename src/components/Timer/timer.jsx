@@ -7,8 +7,8 @@ class Timer extends Component {
     super();
 
     //init the timer by these value
-    this.countDownTimeMin = 0;
-    this.countDownTimeSec = 1;
+    this.countDownTimeMin = 10;
+    this.countDownTimeSec = 4;
     this.countDownTimeMillSec = 10;
 
     //Timer state
@@ -37,6 +37,8 @@ class Timer extends Component {
     //used for rendering UI
     this.renderTimer = this.renderTimer.bind(this);
     this.renderButton = this.renderButton.bind(this);
+
+    this.getTimeString = this.getTimeString.bind(this);
   }
 
   timeCountDown() {
@@ -122,13 +124,30 @@ class Timer extends Component {
     return className;
   }
 
+  getTimeString() {
+    let minUp = parseInt(this.state.minute / 10);
+    let minDown = parseInt(this.state.minute % 10);
+    let secUp = parseInt(this.state.seconds / 10);
+    let secDown = parseInt(this.state.seconds % 10);
+    let millsecUp = parseInt(this.state.millseconds / 10);
+    let millsecDown = parseInt(this.state.millseconds % 10);
+    return (
+      minUp.toString(10) +
+      minDown.toString(10) +
+      ":" +
+      secUp.toString(10) +
+      secDown.toString(10) +
+      "'" +
+      millsecUp.toString(10) +
+      millsecDown.toString(10)
+    );
+  }
+
   render() {
     return (
       <div>
         <h1 class="timer-centered">
-          <span className={this.renderTimer()}>
-            {this.state.minute}:{this.state.seconds}'{this.state.millseconds}
-          </span>
+          <span className={this.renderTimer()}>{this.getTimeString()}</span>
         </h1>
         <div class="timer-centered">
           <button onClick={this.startTimer} className={this.renderButton()}>
