@@ -1,6 +1,11 @@
-.centered {
+.timer-centered {
   height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.button-style {
+  size: small;
+  font-size: 40px;
 }
