@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import "../../styles/timer-style.css";
 
 class Timer extends Component {
+  //constructor
   constructor() {
     super();
 
-    //init the timer
-    this.countDownTimeMin = 1;
-    this.countDownTimeSec = 10;
+    //init the timer by these value
+    this.countDownTimeMin = 0;
+    this.countDownTimeSec = 1;
     this.countDownTimeMillSec = 10;
 
+    //Timer state
     this.state = {
       minute: this.countDownTimeMin,
       seconds: this.countDownTimeSec,
@@ -18,15 +20,37 @@ class Timer extends Component {
       counting: false,
     };
 
+    //used for interval control
     this.setIntervalId = {};
+
+    /*bind function to timer*/
+
     this.timeCountDown = this.timeCountDown.bind(this);
+
+    //used for both starting or resuming the timer
     this.startTimer = this.startTimer.bind(this);
+
     this.pauseTimer = this.pauseTimer.bind(this);
+
     this.resetTimer = this.resetTimer.bind(this);
-    this.renderButtonClass = this.renderButtonClass.bind(this);
+
+    //used for rendering UI
+    this.renderTimer = this.renderTimer.bind(this);
+    this.renderButton = this.renderButton.bind(this);
   }
+
   timeCountDown() {
-    if (this.state.counting === true) {
+    if (
+      //check if the time is already 0
+      //if so then call pause
+      this.state.millseconds === 0 &&
+      this.state.minute === 0 &&
+      this.state.seconds === 0 &&
+      this.state.counting === true
+    )
+      this.pauseTimer();
+    else if (this.state.counting === true) {
+      //handle normal count down
       this.setState({ millseconds: this.state.millseconds - 3 });
 
       if (this.state.millseconds <= 0) {
@@ -42,31 +66,19 @@ class Timer extends Component {
         this.setState({ millseconds: 60 });
       }
     }
-    if (
-      this.state.millseconds === 0 &&
-      this.state.minute === 0 &&
-      this.state.seconds === 0 &&
-      this.state.counting === true
-    ) {
-      this.pauseTimer();
-    }
   }
+
   startTimer() {
+    //handle pause
     if (this.state.counting === true) {
       this.pauseTimer();
-      return;
     } else {
-      if (
-        this.state.timerEnable === false &&
-        (this.state.millseconds !== 0 ||
-          this.state.seconds !== 0 ||
-          this.state.minute !== 0)
-      ) {
-        this.state.setIntervalId = setInterval(this.timeCountDown, 1000 / 20);
-        this.setState({ timerEnable: true, counting: true });
-      }
+      //handle start or resume
+      this.state.setIntervalId = setInterval(this.timeCountDown, 1000 / 20);
+      this.setState({ timerEnable: true, counting: true });
     }
   }
+
   pauseTimer() {
     this.setState({
       counting: false,
@@ -74,6 +86,7 @@ class Timer extends Component {
     });
     clearInterval(this.state.setIntervalId);
   }
+
   resetTimer() {
     this.setState({
       counting: false,
@@ -84,7 +97,22 @@ class Timer extends Component {
     });
     clearInterval(this.state.setIntervalId);
   }
-  renderButtonClass() {
+
+  renderTimer() {
+    let className = "badge badge-";
+    if (
+      this.state.millseconds === 0 &&
+      this.state.minute === 0 &&
+      this.state.seconds === 0
+    ) {
+      className += "danger";
+    } else {
+      className += "success";
+    }
+    return className;
+  }
+
+  renderButton() {
     let className = "btn btn-lg badge-pill m-2 btn-";
     if (this.state.counting) {
       className += "danger";
@@ -98,15 +126,12 @@ class Timer extends Component {
     return (
       <div>
         <h1 class="timer-centered">
-          <span className="badge badge-success ">
+          <span className={this.renderTimer()}>
             {this.state.minute}:{this.state.seconds}'{this.state.millseconds}
           </span>
         </h1>
         <div class="timer-centered">
-          <button
-            onClick={this.startTimer}
-            className={this.renderButtonClass()}
-          >
+          <button onClick={this.startTimer} className={this.renderButton()}>
             {this.state.counting && "Pause"}
             {!this.state.counting && "Start"}
           </button>
