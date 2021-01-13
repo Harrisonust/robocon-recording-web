@@ -7,9 +7,9 @@ class Timer extends Component {
     super();
 
     //init the timer by these value
-    this.countDownTimeMin = 10;
-    this.countDownTimeSec = 4;
-    this.countDownTimeMillSec = 10;
+    this.countDownTimeMin = 59;
+    this.countDownTimeSec = 50;
+    this.countDownTimeMillSec = 0;
 
     //Timer state
     this.state = {
@@ -39,6 +39,9 @@ class Timer extends Component {
     this.renderButton = this.renderButton.bind(this);
 
     this.getTimeString = this.getTimeString.bind(this);
+
+    this.configUp = this.configUp.bind(this);
+    this.configDown = this.configDown.bind(this);
   }
 
   timeCountDown() {
@@ -143,11 +146,35 @@ class Timer extends Component {
     );
   }
 
+  configUp() {
+    if (this.state.minute >= 60) {
+      this.setState({ minute: 60, seconds: 0 });
+    } else if (this.state.seconds + 1 >= 60) {
+      this.setState({ minute: this.state.minute + 1, seconds: 0 });
+    } else this.setState({ seconds: this.state.seconds + 1 });
+  }
+
+  configDown() {
+    if (this.state.seconds - 1 < 0 && this.state.minute === 0) {
+      this.setState({ minute: 0, seconds: 0 });
+    } else if (this.state.seconds - 1 < 0) {
+      this.setState({ minute: this.state.minute - 1, seconds: 59 });
+    } else this.setState({ seconds: this.state.seconds - 1 });
+  }
+
   render() {
     return (
       <div>
         <h1 class="timer-centered">
           <span className={this.renderTimer()}>{this.getTimeString()}</span>
+          <div>
+            <button onClick={this.configUp} className="button">
+              +
+            </button>
+            <button onClick={this.configDown} className="button">
+              -
+            </button>
+          </div>
         </h1>
         <div class="timer-centered">
           <button onClick={this.startTimer} className={this.renderButton()}>

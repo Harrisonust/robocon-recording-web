@@ -9,3 +9,28 @@
   size: small;
   font-size: 40px;
 }
+
+.btn-group button {
+  background-color: #4caf50; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 50%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
+.button {
+  background-color: #141414;
+  border: none;
+  color: white;
+  padding: 2px 4px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
+  border: 2px solid #4caf50;
+}
