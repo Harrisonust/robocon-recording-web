@@ -3,12 +3,12 @@ import "../../styles/timer-style.css";
 
 class Timer extends Component {
   //constructor
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     //init the timer by these value
-    this.countDownTimeMin = 59;
-    this.countDownTimeSec = 50;
+    this.countDownTimeMin = 1;
+    this.countDownTimeSec = 0;
     this.countDownTimeMillSec = 0;
 
     //Timer state
@@ -112,7 +112,7 @@ class Timer extends Component {
     ) {
       className += "danger";
     } else {
-      className += "success";
+      className += "primary";
     }
     return className;
   }

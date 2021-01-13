@@ -1,0 +1,10 @@
+.body {
+  /* 　background-image: url(" 要顯示的圖片網址 ");*/
+  /* 　border: 1px #ccc solid; */
+
+  font-style: italic;
+  background-color: #0f0f0f;
+  background-image: url(../img/background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

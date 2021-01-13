@@ -3,13 +3,18 @@ import React, { Component } from "react";
 // import "./App.css";
 import Timer from "./components/Timer/timer";
 import Map from "./components/Mapping/Map";
+import "./styles/mainApp.css";
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="body">
         <Timer />
+        {/* <Timer />
+        <Timer />
+        <Timer />
+        <Timer /> */}
         <Map />
-      </React.Fragment>
+      </div>
     );
   }
 }
