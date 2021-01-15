@@ -1,0 +1,39 @@
+.grid-container {
+  display: grid;
+  align-content: start;
+  grid-template-rows: auto auto auto;
+  grid-gap: 30px;
+  padding: 10px;
+}
+
+.buttons {
+  width: 100%;
+  table-layout: fixed;
+}
+.buttons tr {
+  display: flex;
+}
+.buttons tr td {
+  flex: 1;
+  display: flex;
+  padding-inline: 1px;
+  flex-direction: column;
+}
+button {
+  flex: 1;
+  border-radius: 100px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(234, 238, 229);
+}
+
+button:disabled {
+  cursor: auto;
+}
+
+button:disabled:hover {
+  background-color: transparent;
+}

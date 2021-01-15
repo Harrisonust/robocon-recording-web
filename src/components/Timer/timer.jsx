@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../styles/timer-style.css";
+import "../../styles/map-list-style.css";
 
 class Timer extends Component {
   //constructor
@@ -164,8 +165,8 @@ class Timer extends Component {
 
   render() {
     return (
-      <div>
-        <h1 class="timer-centered">
+      <div className="header">
+        <h1 className="timer-centered">
           <span className={this.renderTimer()}>{this.getTimeString()}</span>
           <div>
             <button onClick={this.configUp} className="button">
@@ -176,7 +177,7 @@ class Timer extends Component {
             </button>
           </div>
         </h1>
-        <div class="timer-centered">
+        <div className="timer-centered">
           <button onClick={this.startTimer} className={this.renderButton()}>
             {this.state.counting && "Pause"}
             {!this.state.counting && "Start"}
