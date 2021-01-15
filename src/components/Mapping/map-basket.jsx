@@ -26,6 +26,7 @@ class BasketButton extends Component {
             <tr>
               <td>
                 <button
+                  className="btn btn-primary"
                   type="button"
                   id="button I"
                   onClick={() => this.handleClickedShooting("button_scored I")}
@@ -36,6 +37,7 @@ class BasketButton extends Component {
               </td>
               <td>
                 <button
+                  className="btn btn-primary"
                   type="button"
                   id="button II"
                   onClick={() => this.handleClickedShooting("button_scored II")}
@@ -46,6 +48,7 @@ class BasketButton extends Component {
               </td>
               <td>
                 <button
+                  className="btn btn-primary"
                   type="button"
                   id="button III"
                   onClick={() =>
@@ -64,6 +67,7 @@ class BasketButton extends Component {
             <tr>
               <td>
                 <button
+                  className="btn btn-primary"
                   type="button"
                   id="button_scored I"
                   onClick={() => this.handleClickedScored("button_scored I")}
@@ -74,6 +78,7 @@ class BasketButton extends Component {
               </td>
               <td>
                 <button
+                  className="btn btn-primary"
                   type="button"
                   id="button_scored II"
                   onClick={() => this.handleClickedScored("button_scored II")}
@@ -84,6 +89,7 @@ class BasketButton extends Component {
               </td>
               <td>
                 <button
+                  className="btn btn-primary"
                   type="button"
                   id="button_scored III"
                   onClick={() => this.handleClickedScored("button_scored III")}
