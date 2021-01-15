@@ -9,10 +9,6 @@ class App extends Component {
     return (
       <div className="body">
         <Timer />
-        {/* <Timer />
-        <Timer />
-        <Timer />
-        <Timer /> */}
         <Map />
       </div>
     );
