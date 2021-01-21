@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-import BasketButton from "./map-basket";
 import "../../styles/map-style.css";
 import "../../styles/map-list-style.css";
+import BasketButton from "./map-basket";
 
 class Map extends Component {
-  state = {};
+  state = {
+    points: 0,
+  };
+
   render() {
     return (
       <div>
         <div className="row">
           <div className="column left">
-            <div className="grid-container">
-              <BasketButton />
-            </div>
+            <BasketButton />
           </div>
           <div className="column middle">MAP</div>
           <div className="column right"></div>
