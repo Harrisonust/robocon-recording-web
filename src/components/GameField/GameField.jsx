@@ -183,10 +183,10 @@ class GameField extends Component {
             hover="true"
           />
         </map>
-        <div>
+        {/* <div>
           <p className="GameFieldScore">Our Score:{this.state.ourScore}</p>
           <p className="GameFieldScore">Their Score:{this.state.theirScore}</p>
-        </div>
+        </div> */}
         <div>
           <p className="PotsStatus p0">{this.state.PotsStatus[0]}</p>
           <p className="PotsStatus p1">{this.state.PotsStatus[1]}</p>
