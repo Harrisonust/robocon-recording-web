@@ -4,20 +4,17 @@ import "../../styles/map-list-style.css";
 import BasketButton from "./map-basket";
 
 class Map extends Component {
-  state = {
-    points: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.timer = React.createRef();
+  }
+
+  state = {};
 
   render() {
     return (
       <div>
-        <div className="row">
-          <div className="column left">
-            <BasketButton />
-          </div>
-          <div className="column middle">MAP</div>
-          <div className="column right"></div>
-        </div>
+        <BasketButton />
       </div>
     );
   }
