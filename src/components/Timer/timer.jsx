@@ -79,8 +79,11 @@ class Timer extends Component {
       this.pauseTimer();
     } else {
       //handle start or resume
-      this.state.setIntervalId = setInterval(this.timeCountDown, 1000 / 20);
-      this.setState({ timerEnable: true, counting: true });
+      this.setState({
+        setIntervalId: setInterval(this.timeCountDown, 1000 / 20),
+        timerEnable: true,
+        counting: true,
+      });
     }
   }
 
