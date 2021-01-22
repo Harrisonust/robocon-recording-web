@@ -9,4 +9,9 @@
 
 .horizontal-container {
   display: flex;
+  justify-content: space-around;
+}
+
+.header-timer {
+  margin-bottom: 30px;
 }

@@ -10,10 +10,13 @@ class App extends Component {
   render() {
     return (
       <div className="mainPageStyle">
-        <Timer />
+        <div className="header-timer">
+          <Timer />
+        </div>
         <div className="horizontal-container">
           <Map />
           <GameField />
+          <Map />
         </div>
       </div>
     );
