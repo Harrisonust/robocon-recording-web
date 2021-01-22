@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../styles/GameField.css";
-import GameFieldImage from "../../img/GameField.png";
+import GameFieldImage from "../../img/gamefield.png";
 class GameField extends Component {
   state = {
     ourScore: 0,
@@ -70,12 +70,20 @@ class GameField extends Component {
     }
     this.state.PotsStatus[index] = this.state.PotsStatus[index] + 1;
   };
-
+  point_spec = {
+    x1: 200,
+    x2: 284,
+    x3: 320,
+    x4: 403,
+    y1: 176,
+    y2: 287,
+    y3: 316,
+    y4: 428,
+    rad: 80,
+  };
   render() {
     return (
       <div>
-        <p className="GameFieldCounter">Our Score:{this.state.ourScore}</p>
-        <p className="GameFieldCounter">Their Score:{this.state.theirScore}</p>
         <img
           className="GameFieldImage"
           src={GameFieldImage}
@@ -85,7 +93,7 @@ class GameField extends Component {
         <map name="GameField">
           <area
             shape="circle"
-            coords="252,359,10"
+            coords="201, 287, 10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(0)}
@@ -94,7 +102,7 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="252,395,10"
+            coords="201,316,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(1)}
@@ -102,23 +110,16 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="356,220,10"
+            coords="284,176,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(2)}
             hover="true"
           />
+
           <area
             shape="circle"
-            coords="399,220,10"
-            alt="buttonerror"
-            href="#"
-            onClick={() => this.ScoreHandler(5)}
-            hover="true"
-          />
-          <area
-            shape="circle"
-            coords="356,378,10"
+            coords="284,302,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(3)}
@@ -126,15 +127,7 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="399,378,10"
-            alt="buttonerror"
-            href="#"
-            onClick={() => this.ScoreHandler(6)}
-            hover="true"
-          />
-          <area
-            shape="circle"
-            coords="356,535,10"
+            coords="284,428,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(4)}
@@ -142,7 +135,24 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="399,535,10"
+            coords="320,176,10"
+            alt="buttonerror"
+            href="#"
+            onClick={() => this.ScoreHandler(5)}
+            hover="true"
+          />
+          <area
+            shape="circle"
+            coords="320,302,10"
+            alt="buttonerror"
+            href="#"
+            onClick={() => this.ScoreHandler(6)}
+            hover="true"
+          />
+
+          <area
+            shape="circle"
+            coords="320,428,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(7)}
@@ -150,7 +160,7 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="504,359,10"
+            coords="403,287,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(8)}
@@ -158,13 +168,17 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="504,395,10"
+            coords="403,316,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(9)}
             hover="true"
           />
         </map>
+        <div>
+          <p className="GameFieldScore">Our Score:{this.state.ourScore}</p>
+          <p className="GameFieldScore">Their Score:{this.state.theirScore}</p>
+        </div>
       </div>
     );
   }
