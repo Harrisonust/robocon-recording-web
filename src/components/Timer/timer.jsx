@@ -170,18 +170,20 @@ class Timer extends Component {
       <div>
         <div className="timer-centered">
           <span className={this.renderTimer()}>{this.getTimeString()}</span>
-          <button
-            onClick={this.configUp}
-            className="btn btn-outline-primary badge-pill btn-sm "
-          >
-            +
-          </button>
-          <button
-            onClick={this.configDown}
-            className="btn btn-outline-primary badge-pill btn-sm "
-          >
-            -
-          </button>
+          <div>
+            <button
+              onClick={this.configUp}
+              className=" timer-adjustbutton-vertical "
+            >
+              +
+            </button>
+            <button
+              onClick={this.configDown}
+              className="timer-adjustbutton-vertical "
+            >
+              -
+            </button>
+          </div>
         </div>
         <div className="timer-button-center">
           <button onClick={this.startTimer} className={this.renderButton()}>
@@ -202,34 +204,3 @@ class Timer extends Component {
 }
 
 export default Timer;
-
-{
-  /* <button onClick={this.startTimer} className={this.renderButton()}>
-            {this.state.counting && "Pause"}
-            {!this.state.counting && "Start"}
-          </button>
-
-          <button
-            onClick={this.resetTimer}
-            className="btn btn-warning badge-pill m-2 btn-lg"
-          >
-            Reset
-          </button> */
-}
-
-{
-  /* <div>
-  <button
-    onClick={this.configUp}
-    className="btn btn-outline-primary badge-pill m-2 btn-sm btn-block"
-  >
-    +
-  </button>
-  <button
-    onClick={this.configDown}
-    className="btn btn-outline-primary badge-pill m-2 btn-sm btn-block"
-  >
-    -
-  </button>
-</div>; */
-}

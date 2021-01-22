@@ -2,9 +2,76 @@
   display: block;
   margin: auto;
 }
-.GameFieldCounter {
+
+.GameFieldScore {
   text-align: right;
-  color: #fff;
+  color: rgb(16, 229, 236);
   font-size: 20px;
   margin-right: 40px;
+  position: relative;
+  top: -700px;
+}
+
+.PotsStatus {
+  color: rgb(226, 29, 29);
+  font-size: 15px;
+  font: arial;
+  display: inline;
+}
+
+.p0 {
+  position: relative;
+  top: -330px;
+  left: 180px;
+}
+
+.p1 {
+  position: relative;
+  top: -323px;
+  left: 180px;
+}
+
+.p2 {
+  position: relative;
+  top: -490px;
+  left: 260px;
+}
+
+.p3 {
+  position: relative;
+  top: -388px;
+  left: 260px;
+}
+
+.p4 {
+  position: relative;
+  top: -285px;
+  left: 260px;
+}
+
+.p5 {
+  position: relative;
+  top: -562px;
+  left: 335px;
+}
+.p6 {
+  position: relative;
+  top: -460px;
+  left: 335px;
+}
+.p7 {
+  position: relative;
+  top: -357px;
+  left: 335px;
+}
+.p8 {
+  position: relative;
+  top: -523px;
+  left: 417px;
+}
+
+.p9 {
+  position: relative;
+  top: -517px;
+  left: 417px;
 }
