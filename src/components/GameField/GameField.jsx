@@ -12,7 +12,7 @@ class GameField extends Component {
   render() {
     return (
       <div>
-        <p color="white">{this.state.counter}</p>
+        <p className="GameFieldCounter">score:{this.state.counter}</p>
         <img
           className="GameFieldImage"
           src={GameFieldImage}
