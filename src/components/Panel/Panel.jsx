@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "../../styles/map-style.css";
-import "../../styles/map-list-style.css";
-import BasketButton from "./map-basket";
+import "../../styles/panel-style.css";
+import "../../styles/panel-list-style.css";
+import BasketButton from "./Panel-basket";
 
 class Map extends Component {
   constructor(props) {

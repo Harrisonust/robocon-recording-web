@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "../../styles/map-list-style.css";
+import "../../styles/panel-list-style.css";
+import ScoreBoard from "../ScoreBoard";
 
 class BasketButton extends Component {
   state = {
