@@ -170,18 +170,20 @@ class Timer extends Component {
       <div>
         <div className="timer-centered">
           <span className={this.renderTimer()}>{this.getTimeString()}</span>
-          <button
-            onClick={this.configUp}
-            className="btn btn-outline-primary badge-pill btn-sm "
-          >
-            +
-          </button>
-          <button
-            onClick={this.configDown}
-            className="btn btn-outline-primary badge-pill btn-sm "
-          >
-            -
-          </button>
+          <div>
+            <button
+              onClick={this.configUp}
+              className=" timer-adjustbutton-vertical "
+            >
+              +
+            </button>
+            <button
+              onClick={this.configDown}
+              className="timer-adjustbutton-vertical "
+            >
+              -
+            </button>
+          </div>
         </div>
         <div className="timer-button-center">
           <button onClick={this.startTimer} className={this.renderButton()}>
