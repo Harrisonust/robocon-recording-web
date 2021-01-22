@@ -19,11 +19,20 @@ class BasketButton extends Component {
   handleArrowReload = () => {
     this.setState({ arrows: this.state.arrows + 1 });
     let state;
+    let state_reload;
+    if (this.state.arrows > 3) {
+      state_reload = "disabled";
+    } else {
+      state_reload = "btn";
+    }
+
     if (this.state.arrows < 0) {
       state = "disabled";
     } else {
       state = "btn";
     }
+
+    this.setState({ state_button_reload: state_reload });
     this.setState({ state_button_shoot: state });
   };
 
