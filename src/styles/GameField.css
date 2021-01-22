@@ -13,7 +13,7 @@
 }
 
 .PotsStatus {
-  color: rgba(0, 0, 0, 1);
+  color: rgb(226, 29, 29);
   font-size: 15px;
   font: arial;
   display: inline;
@@ -27,51 +27,51 @@
 
 .p1 {
   position: relative;
-  top: -303px;
+  top: -323px;
   left: 180px;
 }
 
 .p2 {
   position: relative;
-  top: -445px;
-  left: 240px;
+  top: -490px;
+  left: 260px;
 }
 
 .p3 {
   position: relative;
-  top: -318px;
-  left: 240px;
+  top: -388px;
+  left: 260px;
 }
 
 .p4 {
   position: relative;
-  top: -190px;
-  left: 240px;
+  top: -285px;
+  left: 260px;
 }
 
 .p5 {
   position: relative;
-  top: -445px;
-  left: 290px;
+  top: -562px;
+  left: 335px;
 }
 .p6 {
   position: relative;
-  top: -318px;
-  left: 290px;
+  top: -460px;
+  left: 335px;
 }
 .p7 {
   position: relative;
-  top: -190px;
-  left: 290px;
+  top: -357px;
+  left: 335px;
 }
 .p8 {
   position: relative;
-  top: -330px;
-  left: 350px;
+  top: -523px;
+  left: 417px;
 }
 
 .p9 {
   position: relative;
-  top: -303px;
-  left: 340px;
+  top: -517px;
+  left: 417px;
 }
