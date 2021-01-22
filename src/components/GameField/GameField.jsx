@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import "../../styles/GameField.css";
 import GameFieldImage from "../../img/gamefield.png";
 class GameField extends Component {
+  point_spec = {
+    x1: 200,
+    x2: 284,
+    x3: 320,
+    x4: 403,
+    y1: 176,
+    y2: 287,
+    y3: 316,
+    y4: 428,
+    rad: 80,
+  };
+
   state = {
     ourScore: 0,
     theirScore: 0,
@@ -68,19 +80,15 @@ class GameField extends Component {
       )
         this.setState({ theirScore: this.state.theirScore + 1 });
     }
-    this.state.PotsStatus[index] = this.state.PotsStatus[index] + 1;
+    if (this.state.PotsStatus[index] === 6) return;
+    var newList = [];
+    for (var x = 0; x < this.state.PotsStatus.length; x++) {
+      if (x === index) newList.push(this.state.PotsStatus[x] + 1);
+      else newList.push(this.state.PotsStatus[x]);
+    }
+    this.setState({ PotsStatus: newList });
   };
-  point_spec = {
-    x1: 200,
-    x2: 284,
-    x3: 320,
-    x4: 403,
-    y1: 176,
-    y2: 287,
-    y3: 316,
-    y4: 428,
-    rad: 80,
-  };
+
   render() {
     return (
       <div>
@@ -110,7 +118,7 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="284,176,10"
+            coords="285,176,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(2)}
@@ -119,7 +127,7 @@ class GameField extends Component {
 
           <area
             shape="circle"
-            coords="284,302,10"
+            coords="285,302,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(3)}
@@ -127,7 +135,7 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="284,428,10"
+            coords="285,428,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.ScoreHandler(4)}
@@ -178,6 +186,18 @@ class GameField extends Component {
         <div>
           <p className="GameFieldScore">Our Score:{this.state.ourScore}</p>
           <p className="GameFieldScore">Their Score:{this.state.theirScore}</p>
+        </div>
+        <div>
+          <p className="PotsStatus p0">{this.state.PotsStatus[0]}</p>
+          <p className="PotsStatus p1">{this.state.PotsStatus[1]}</p>
+          <p className="PotsStatus p2">{this.state.PotsStatus[2]}</p>
+          <p className="PotsStatus p3">{this.state.PotsStatus[3]}</p>
+          <p className="PotsStatus p4">{this.state.PotsStatus[4]}</p>
+          <p className="PotsStatus p5">{this.state.PotsStatus[5]}</p>
+          <p className="PotsStatus p6">{this.state.PotsStatus[6]}</p>
+          <p className="PotsStatus p7">{this.state.PotsStatus[7]}</p>
+          <p className="PotsStatus p8">{this.state.PotsStatus[8]}</p>
+          <p className="PotsStatus p9">{this.state.PotsStatus[9]}</p>
         </div>
       </div>
     );

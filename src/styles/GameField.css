@@ -11,3 +11,67 @@
   position: relative;
   top: -700px;
 }
+
+.PotsStatus {
+  color: rgba(0, 0, 0, 1);
+  font-size: 15px;
+  font: arial;
+  display: inline;
+}
+
+.p0 {
+  position: relative;
+  top: -420px;
+  left: 180px;
+}
+
+.p1 {
+  position: relative;
+  top: -393px;
+  left: 180px;
+}
+
+.p2 {
+  position: relative;
+  top: -535px;
+  left: 240px;
+}
+
+.p3 {
+  position: relative;
+  top: -408px;
+  left: 240px;
+}
+
+.p4 {
+  position: relative;
+  top: -280px;
+  left: 240px;
+}
+
+.p5 {
+  position: relative;
+  top: -535px;
+  left: 290px;
+}
+.p6 {
+  position: relative;
+  top: -408px;
+  left: 290px;
+}
+.p7 {
+  position: relative;
+  top: -280px;
+  left: 290px;
+}
+.p8 {
+  position: relative;
+  top: -420px;
+  left: 350px;
+}
+
+.p9 {
+  position: relative;
+  top: -393px;
+  left: 340px;
+}
