@@ -2,17 +2,9 @@
   box-sizing: border-box;
 }
 
-/* Style the header */
-.header {
-  font-style: italic;
-  text-align: center;
-  background-image: url(../img/background.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 /* Container for flexboxes */
 .row:after {
+  position: absolute;
   content: "";
   display: table;
   clear: both;
@@ -22,7 +14,6 @@
 .column {
   float: left;
   padding: 10px;
-  height: 100vh;
 }
 
 .left,

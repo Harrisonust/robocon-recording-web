@@ -2,8 +2,8 @@
   display: grid;
   align-content: start;
   grid-template-rows: auto auto auto;
-  grid-gap: 30px;
-  padding: 10px;
+  grid-gap: 1em;
+  padding: 2%;
 }
 
 .buttons {
@@ -21,8 +21,8 @@
 }
 button {
   flex: 1;
-  border-radius: 100px;
-  background-color: transparent;
+  background-color: yellow;
+  color: tomato;
   cursor: pointer;
 }
 
@@ -30,10 +30,18 @@ button:hover {
   background-color: rgb(234, 238, 229);
 }
 
-button:disabled {
+.disabled {
   cursor: auto;
+  pointer-events: none;
+  background-color: transparent;
+  color: #ccc;
 }
 
 button:disabled:hover {
   background-color: transparent;
+}
+
+.badge {
+  background-color: transparent;
+  font-size: 50%;
 }
