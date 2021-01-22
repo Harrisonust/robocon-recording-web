@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import "../../styles/map-list-style.css";
 
-let scored_basket = "none";
-let prev_scored_basket = "none";
-
 class BasketButton extends Component {
   state = {
     points: 0,
     arrows: 0,
+    scored_basket: "none",
+    prev_scored_basket: "none",
     state_button_reload: "btn",
     state_button_shoot: "disabled",
     state_button_scored: "disabled",
@@ -51,7 +50,7 @@ class BasketButton extends Component {
     if (named === "button_scored III") {
       let state;
       let state_reload;
-      if (named !== prev_scored_basket) {
+      if (named !== this.state.prev_scored_basket) {
         if (this.state.basket.indexOf(named) > -1) {
           this.setState({ points: this.state.points + 4 });
         } else {
@@ -67,14 +66,14 @@ class BasketButton extends Component {
         state = "disabled";
       }
       state_reload = "btn";
-      prev_scored_basket = named;
       this.state.basket.push(named);
 
       this.setState(this.state.basket);
       this.setState({ state_button_shoot: state });
       this.setState({ state_button_reload: state_reload });
+      this.setState({ prev_scored_basket: named });
     }
-    scored_basket = named;
+
     let state_scored;
     let state_missed;
     state_scored = "disabled";
@@ -82,6 +81,7 @@ class BasketButton extends Component {
 
     this.setState({ state_button_scored: state_scored });
     this.setState({ state_button_missed: state_missed });
+    this.setState({ scored_basket: named });
 
     if (named !== "button_scored III") {
       let state_type;
@@ -91,18 +91,28 @@ class BasketButton extends Component {
   };
 
   handleTypeOfBasket = (named) => {
-    if (scored_basket + " " + named !== prev_scored_basket) {
-      if (this.state.basket.indexOf(scored_basket + " " + named) > -1) {
+    if (
+      this.state.scored_basket + " " + named !==
+      this.state.prev_scored_basket
+    ) {
+      if (
+        this.state.basket.indexOf(this.state.scored_basket + " " + named) > -1
+      ) {
         this.setState({ points: this.state.points + 4 });
       } else {
         this.setState({ points: this.state.points + 1 });
       }
 
-      this.state.basket.push(scored_basket + " " + named);
+      this.state.basket.push(this.state.scored_basket + " " + named);
       this.setState(this.state.basket);
+    } else {
+      alert("No Points!");
     }
 
-    prev_scored_basket = scored_basket + " " + named;
+    this.setState({
+      prev_scored_basket: this.state.scored_basket + " " + named,
+    });
+
     let state;
     let state_type;
     let state_reload;
