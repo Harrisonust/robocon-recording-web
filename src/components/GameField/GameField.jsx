@@ -28,6 +28,9 @@ class GameField extends Component {
     PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   };
 
+  constructor(props) {
+    super(props);
+  }
   ScoreHandler = (index) => {
     if (index < 5) {
       if (
