@@ -204,34 +204,3 @@ class Timer extends Component {
 }
 
 export default Timer;
-
-{
-  /* <button onClick={this.startTimer} className={this.renderButton()}>
-            {this.state.counting && "Pause"}
-            {!this.state.counting && "Start"}
-          </button>
-
-          <button
-            onClick={this.resetTimer}
-            className="btn btn-warning badge-pill m-2 btn-lg"
-          >
-            Reset
-          </button> */
-}
-
-{
-  /* <div>
-  <button
-    onClick={this.configUp}
-    className="btn btn-outline-primary badge-pill m-2 btn-sm btn-block"
-  >
-    +
-  </button>
-  <button
-    onClick={this.configDown}
-    className="btn btn-outline-primary badge-pill m-2 btn-sm btn-block"
-  >
-    -
-  </button>
-</div>; */
-}
