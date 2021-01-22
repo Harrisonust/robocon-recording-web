@@ -3,7 +3,8 @@
   margin: auto;
 }
 .GameFieldCounter {
-  text-align: center;
+  text-align: right;
   color: #fff;
   font-size: 20px;
+  margin-right: 40px;
 }
