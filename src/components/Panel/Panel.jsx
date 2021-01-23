@@ -3,7 +3,7 @@ import "../../styles/panel-style.css";
 import "../../styles/panel-list-style.css";
 import BasketButton from "./Panel-basket";
 
-class Map extends Component {
+class Panel extends Component {
   constructor(props) {
     super(props);
     this.timer = React.createRef();
@@ -20,4 +20,4 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default Panel;
