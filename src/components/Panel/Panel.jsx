@@ -14,7 +14,13 @@ class Panel extends Component {
   render() {
     return (
       <div>
-        <BasketButton />
+        <BasketButton
+          Score={this.props.Score}
+          time={this.props.time}
+          handleClickedScored={this.props.handleClickedScored}
+          handleTypeOfBasket={this.props.handleTypeOfBasket}
+          index={this.props.index}
+        />
       </div>
     );
   }

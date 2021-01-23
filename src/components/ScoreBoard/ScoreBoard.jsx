@@ -10,7 +10,7 @@ class ScoreBoard extends Component {
   render() {
     return (
       <div>
-        <p className="scoreboard">Score:{this.props.score}</p>
+        <p className="scoreboard">Score: {this.props.Score}</p>
       </div>
     );
   }
