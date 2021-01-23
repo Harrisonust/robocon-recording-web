@@ -173,13 +173,13 @@ class Timer extends Component {
           <div>
             <button
               onClick={this.configUp}
-              className=" timer-adjustbutton-vertical "
+              className=" timer-adjustbutton-vertical btn-primary"
             >
               +
             </button>
             <button
               onClick={this.configDown}
-              className="timer-adjustbutton-vertical "
+              className="timer-adjustbutton-vertical btn-primary"
             >
               -
             </button>
