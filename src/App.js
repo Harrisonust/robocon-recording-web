@@ -12,13 +12,11 @@ class App extends Component {
     time: 0,
 
     //gamefield state
-    PotsStatusTable: {
-      firstSingle: 0,
-      firstTwinning: 1,
-      secondSingle: 2,
+    PotsScoreTable: {
+      firstSingle: 1,
+      firstTwinning: 3,
+      secondSingle: 1,
       secondTwinning: 3,
-      thirdSingle: 4,
-      fourthSingle: 5,
     },
     PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
@@ -27,16 +25,37 @@ class App extends Component {
 
   //GameField functions start here
   ScoreHandler = (index) => {
-    var newScore = [0, 0];
+    //updating score
+    var newScore = [this.state.Score[0], this.state.Score[1]];
+
     if (index < 5) {
-      newScore[0] = this.state.Score[0] + 1;
-      newScore[1] = this.state.Score[1];
+      if (this.state.PotsStatus[index] === 0) {
+        newScore[0] += this.state.PotsScoreTable.firstSingle;
+      } else if (this.state.PotsStatus[index] === 1) {
+        newScore[0] += this.state.PotsScoreTable.firstTwinning;
+      } else if (this.state.PotsStatus[index] === 2) {
+        newScore[0] += this.state.PotsScoreTable.secondSingle;
+      } else if (this.state.PotsStatus[index] === 3) {
+        newScore[0] += this.state.PotsScoreTable.secondTwinning;
+      } else {
+        newScore[0] += 1;
+      }
     } else {
-      newScore[0] = this.state.Score[0];
-      newScore[1] = this.state.Score[1] + 1;
+      if (this.state.PotsStatus[index] === 0) {
+        newScore[1] += this.state.PotsScoreTable.firstSingle;
+      } else if (this.state.PotsStatus[index] === 1) {
+        newScore[1] += this.state.PotsScoreTable.firstTwinning;
+      } else if (this.state.PotsStatus[index] === 2) {
+        newScore[1] += this.state.PotsScoreTable.secondSingle;
+      } else if (this.state.PotsStatus[index] === 3) {
+        newScore[1] += this.state.PotsScoreTable.secondTwinning;
+      } else {
+        newScore[1] += 1;
+      }
     }
     this.setState({ Score: newScore });
 
+    //updating pots
     var newList = [];
     for (var x = 0; x < this.state.PotsStatus.length; x++) {
       if (x === index) newList.push(this.state.PotsStatus[x] + 1);
