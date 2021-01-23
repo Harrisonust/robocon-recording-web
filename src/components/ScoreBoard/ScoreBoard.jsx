@@ -1,9 +1,18 @@
 import React, { Component } from "react";
+import "../../styles/ScoreBoard.css";
 //this is the parent class for Panel and GameField
+
 class ScoreBoard extends Component {
-  state = { points: 0 };
+  state = {};
+  constructor(props) {
+    super(props);
+  }
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <p className="scoreboard">Score:{this.props.score}</p>
+      </div>
+    );
   }
 }
 
