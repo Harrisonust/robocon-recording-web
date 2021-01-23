@@ -11,7 +11,7 @@ class GameField extends Component {
     y2: 287,
     y3: 316,
     y4: 428,
-    rad: 80,
+    rad: 8,
   };
 
   state = {};
@@ -110,10 +110,7 @@ class GameField extends Component {
             hover="true"
           />
         </map>
-        {/* <div>
-          <p className="GameFieldScore">Our Score:{this.state.ourScore}</p>
-          <p className="GameFieldScore">Their Score:{this.state.theirScore}</p>
-        </div> */}
+
         <div>
           <p className="PotsStatus p0">
             {this.props.PotsStatus[0]}
