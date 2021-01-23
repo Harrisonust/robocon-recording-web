@@ -2,8 +2,8 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 // import "./App.css";
 import Timer from "./components/Timer/timer";
-import Map from "./components/Mapping/Map";
-import "./styles/map-list-style.css";
+import Panel from "./components/Panel/Panel";
+import "./styles/panel-list-style.css";
 import "./styles/mainApp.css";
 import GameField from "./components/GameField/GameField";
 class App extends Component {
@@ -14,9 +14,9 @@ class App extends Component {
           <Timer />
         </div>
         <div className="horizontal-container">
-          <Map />
+          <Panel />
           <GameField />
-          <Map />
+          <Panel />
         </div>
       </div>
     );
