@@ -16,9 +16,7 @@ class Panel extends Component {
       <div>
         <BasketButton
           Score={this.props.Score}
-          time={this.props.time}
-          handleClickedScored={this.props.handleClickedScored}
-          handleTypeOfBasket={this.props.handleTypeOfBasket}
+          handleInfoCallBack={this.props.handleInfoCallBack}
           index={this.props.index}
         />
       </div>

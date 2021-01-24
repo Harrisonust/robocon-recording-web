@@ -2,18 +2,25 @@ import React, { Component } from "react";
 import "../../styles/panel-list-style.css";
 
 class BasketButton extends Component {
-  state = {
-    arrows: 0,
-    scored_basket: "none",
-    prev_scored_basket: "none",
-    state_button_reload: "btn",
-    state_button_shoot: "disabled",
-    state_button_scored: "disabled",
-    state_button_missed: "disabled",
-    state_button_type: "disabled",
-    violations: 0,
-    basket: [],
-  };
+  constructor(props) {
+    super(props);
+
+    this.handleClickedScored = this.handleClickedScored.bind(this);
+
+    this.state = {
+      points: 0,
+      arrows: 0,
+      scored_basket: "none",
+      prev_scored_basket: "none",
+      state_button_reload: "btn",
+      state_button_shoot: "disabled",
+      state_button_scored: "disabled",
+      state_button_missed: "disabled",
+      state_button_type: "disabled",
+      violations: 0,
+      basket: [],
+    };
+  }
 
   handleArrowReload = () => {
     this.setState({ arrows: this.state.arrows + 1 });
@@ -52,6 +59,88 @@ class BasketButton extends Component {
     if (this.state.arrows > 0) {
       this.setState({ arrows: this.state.arrows - 1 });
     }
+  };
+
+  handleClickedScored = (named) => {
+    if (named === "button_scored III") {
+      let state;
+      let state_reload;
+      if (named !== this.state.prev_scored_basket) {
+        if (this.state.basket.indexOf(named) > -1) {
+          this.props.handleInfoCallBack(4, this.props.index);
+        } else {
+          this.props.handleInfoCallBack(1, this.props.index);
+        }
+      } else {
+        alert("No Points!");
+      }
+
+      if (this.state.arrows > 0) {
+        state = "btn";
+      } else {
+        state = "disabled";
+      }
+      state_reload = "btn";
+      this.state.basket.push(named);
+
+      this.setState(this.state.basket);
+      this.setState({ state_button_shoot: state });
+      this.setState({ state_button_reload: state_reload });
+      this.setState({ prev_scored_basket: named });
+    }
+
+    let state_scored;
+    let state_missed;
+    state_scored = "disabled";
+    state_missed = "disabled";
+
+    this.setState({ state_button_scored: state_scored });
+    this.setState({ state_button_missed: state_missed });
+    this.setState({ scored_basket: named });
+
+    if (named !== "button_scored III") {
+      let state_type;
+      state_type = "btn";
+      this.setState({ state_button_type: state_type });
+    }
+  };
+
+  handleTypeOfBasket = (named) => {
+    if (
+      this.state.scored_basket + " " + named !==
+      this.state.prev_scored_basket
+    ) {
+      if (
+        this.state.basket.indexOf(this.state.scored_basket + " " + named) > -1
+      ) {
+        this.props.handleInfoCallBack(4, this.props.index);
+      } else {
+        this.props.handleInfoCallBack(1, this.props.index);
+      }
+
+      this.state.basket.push(this.state.scored_basket + " " + named);
+      this.setState(this.state.basket);
+    } else {
+      alert("No Points!");
+    }
+
+    this.setState({
+      prev_scored_basket: this.state.scored_basket + " " + named,
+    });
+
+    let state;
+    let state_type;
+    let state_reload;
+    state_reload = "btn";
+    state_type = "disabled";
+
+    if (this.state.arrows > 0) {
+      state = "btn";
+      this.setState({ state_button_shoot: state });
+    }
+
+    this.setState({ state_button_type: state_type });
+    this.setState({ state_button_reload: state_reload });
   };
 
   handleClickedMissed = () => {
@@ -161,12 +250,7 @@ class BasketButton extends Component {
                     type="button"
                     className={this.state.state_button_scored}
                     id="button_scored I"
-                    onClick={() =>
-                      this.props.handleClickedScored(
-                        "button_scored I",
-                        this.props.index
-                      )
-                    }
+                    onClick={() => this.handleClickedScored("button_scored I")}
                     style={{ borderRadius: 20 }}
                   >
                     I-type Scored
@@ -177,12 +261,7 @@ class BasketButton extends Component {
                     type="button"
                     className={this.state.state_button_scored}
                     id="button_scored II"
-                    onClick={() =>
-                      this.props.handleClickedScored(
-                        "button_scored II",
-                        this.props.index
-                      )
-                    }
+                    onClick={() => this.handleClickedScored("button_scored II")}
                     style={{ borderRadius: 20 }}
                   >
                     II-type Scored
@@ -194,10 +273,7 @@ class BasketButton extends Component {
                     className={this.state.state_button_scored}
                     id="button_scored III"
                     onClick={() =>
-                      this.props.handleClickedScored(
-                        "button_scored III",
-                        this.props.index
-                      )
+                      this.handleClickedScored("button_scored III")
                     }
                     style={{ borderRadius: 20 }}
                   >
@@ -213,9 +289,7 @@ class BasketButton extends Component {
             type="button"
             className={this.state.state_button_type}
             id="button_type up"
-            onClick={() =>
-              this.props.handleTypeOfBasket("button_type up", this.props.index)
-            }
+            onClick={() => this.handleTypeOfBasket("button_type up")}
             style={{ width: "50%" }}
           >
             Type Up
@@ -224,12 +298,7 @@ class BasketButton extends Component {
             type="button"
             className={this.state.state_button_type}
             id="button_type down"
-            onClick={() =>
-              this.props.handleTypeOfBasket(
-                "button_type down",
-                this.props.index
-              )
-            }
+            onClick={() => this.handleTypeOfBasket("button_type down")}
             style={{ width: "50%" }}
           >
             Type Down
