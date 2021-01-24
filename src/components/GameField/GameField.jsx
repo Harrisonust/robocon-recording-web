@@ -31,7 +31,7 @@ class GameField extends Component {
             coords="201, 287, 10"
             alt="buttonerror"
             href="#"
-            onClick={() => this.props.ScoreHandler(0)}
+            onClick={() => this.props.ScoreHandler(9)}
             hover="true"
             className="test"
           />
@@ -106,14 +106,14 @@ class GameField extends Component {
             coords="403,316,10"
             alt="buttonerror"
             href="#"
-            onClick={() => this.props.ScoreHandler(9)}
+            onClick={() => this.props.ScoreHandler(0)}
             hover="true"
           />
         </map>
 
         <div>
           <p className="PotsStatus p0">
-            {this.props.PotsStatus[0]}
+            {this.props.PotsStatus[9]}
             <br />
           </p>
           <p className="PotsStatus p1">
@@ -141,7 +141,7 @@ class GameField extends Component {
             {this.props.PotsStatus[8]} <br />
           </p>
           <p className="PotsStatus p9">
-            {this.props.PotsStatus[9]} <br />
+            {this.props.PotsStatus[0]} <br />
           </p>
         </div>
       </div>
