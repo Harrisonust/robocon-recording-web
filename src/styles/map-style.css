@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Container for flexboxes */
+.row:after {
+  position: absolute;
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Create three equal columns that sits next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left,
+.right {
+  width: 35%;
+}
+
+.middle {
+  width: 30%;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}

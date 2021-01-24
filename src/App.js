@@ -1,28 +1,36 @@
 import React, { Component } from "react";
 
 import "./styles/mainApp.css";
+import "./styles/panel-style.css";
+import "./styles/panel-list-style.css";
 
 import Timer from "./components/Timer/timer";
 import Panel from "./components/Panel/Panel";
 import GameField from "./components/GameField/GameField";
 import ScoreBoard from "./components/ScoreBoard/ScoreBoard";
 class App extends Component {
-  state = {
-    // common state
-    Score: [0, 0], // index 0 for our team and 1 for opponent
-    time: 0,
+  constructor(props) {
+    super(props);
 
-    //gamefield state
-    PotsScoreTable: {
-      firstSingle: 1,
-      firstTwinning: 3,
-      secondSingle: 1,
-      secondTwinning: 3,
-    },
-    PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    this.state = {
+      // common state
+      Score: [0, 0], // index 0 for our team and 1 for opponent
+      time: 0,
 
-    //panel state
-  };
+      //gamefield state
+      PotsScoreTable: {
+        firstSingle: 1,
+        firstTwinning: 3,
+        secondSingle: 1,
+        secondTwinning: 3,
+      },
+      PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+      //panel state
+    };
+
+    this.handleInfoCallBack = this.handleInfoCallBack.bind(this);
+  }
 
   //GameField functions start here
   ScoreHandler = (index) => {
@@ -66,13 +74,15 @@ class App extends Component {
   };
 
   //Panel functions start here
-  handleClickedScored = (named, index) => {
-    var newScore = [1, 0];
+  handleInfoCallBack = (Data, index) => {
+    var newScore = [this.state.Score[0], this.state.Score[1]];
 
-    this.setState({ Score: newScore });
-  };
-  handleTypeOfBasket = (named, index) => {
-    var newScore = [1, 0];
+    if (index === 0) {
+      newScore[0] += Data;
+    }
+    if (index === 1) {
+      newScore[1] += Data;
+    }
 
     this.setState({ Score: newScore });
   };
@@ -80,20 +90,28 @@ class App extends Component {
   render() {
     return (
       <div className="mainPageStyle">
-        <div className="header-timer">
-          <Timer score={this.state.score} time={this.state.time} />
-        </div>
-        <div className="horizontal-container">
-          <div>
+        <div className="row">
+          <div className="column left" style={{ textAlign: "center" }}>
             <ScoreBoard
               className="ScoreBoardCenter"
               Score={this.state.Score[0]}
             />
+          </div>
+          <div className="column middle">
+            <Timer score={this.state.score} time={this.state.time} />
+          </div>
+          <div className="column right" style={{ textAlign: "center" }}>
+            <ScoreBoard
+              className="ScoreBoardCenter"
+              Score={this.state.Score[1]}
+            />
+          </div>
+        </div>
+        <div className="horizontal-container">
+          <div>
             <Panel
               score={this.state.Score[0]}
-              time={this.state.time}
-              handleClickedScored={this.handleClickedScored}
-              handleTypeOfBasket={this.handleTypeOfBasket}
+              handleInfoCallBack={this.handleInfoCallBack}
               index={0}
             />
           </div>
@@ -103,15 +121,9 @@ class App extends Component {
             ScoreHandler={this.ScoreHandler}
           />
           <div>
-            <ScoreBoard
-              className="ScoreBoardCenter"
-              Score={this.state.Score[1]}
-            />
             <Panel
               score={this.state.Score[1]}
-              time={this.state.time}
-              handleClickedScored={this.handleClickedScored}
-              handleTypeOfBasket={this.handleTypeOfBasket}
+              handleInfoCallBack={this.handleInfoCallBack}
               index={1}
             />
           </div>

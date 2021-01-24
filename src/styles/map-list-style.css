@@ -1,0 +1,47 @@
+.grid-container {
+  display: grid;
+  align-content: start;
+  grid-template-rows: auto auto auto;
+  grid-gap: 1em;
+  padding: 2%;
+}
+
+.buttons {
+  width: 100%;
+  table-layout: fixed;
+}
+.buttons tr {
+  display: flex;
+}
+.buttons tr td {
+  flex: 1;
+  display: flex;
+  padding-inline: 1px;
+  flex-direction: column;
+}
+button {
+  flex: 1;
+  background-color: yellow;
+  color: tomato;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(234, 238, 229);
+}
+
+.disabled {
+  cursor: auto;
+  pointer-events: none;
+  background-color: transparent;
+  color: #ccc;
+}
+
+button:disabled:hover {
+  background-color: transparent;
+}
+
+.badge {
+  background-color: transparent;
+  font-size: 50%;
+}
