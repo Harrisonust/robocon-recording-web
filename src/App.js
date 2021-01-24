@@ -21,7 +21,6 @@ class App extends Component {
     this.state = {
       // common state
       Score: [0, 0], // index 0 for our team and 1 for opponent
-      time: 0,
 
       //gamefield state
       PotsScoreTable: {
