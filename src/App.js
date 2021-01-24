@@ -11,6 +11,12 @@ import ScoreBoard from "./components/ScoreBoard/ScoreBoard";
 class App extends Component {
   constructor(props) {
     super(props);
+    //init the timer by these value
+    this.countDownTimeMin = 1;
+    this.countDownTimeSec = 0;
+    this.countDownTimeMillSec = 0;
+    //used for interval control
+    this.setIntervalId = {};
 
     this.state = {
       // common state
@@ -27,9 +33,24 @@ class App extends Component {
       PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
       //panel state
-    };
 
+      //timer state
+      minute: this.countDownTimeMin,
+      seconds: this.countDownTimeSec,
+      millseconds: this.countDownTimeMillSec,
+      timerEnable: false,
+      counting: false,
+    };
+    //panel functions
     this.handleInfoCallBack = this.handleInfoCallBack.bind(this);
+
+    //timer functions
+    this.timeCountDown = this.timeCountDown.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+    this.pauseTimer = this.pauseTimer.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
+    this.configUp = this.configUp.bind(this);
+    this.configDown = this.configDown.bind(this);
   }
 
   //GameField functions start here
@@ -87,6 +108,81 @@ class App extends Component {
     this.setState({ Score: newScore });
   };
 
+  //timer functions start here
+  timeCountDown() {
+    if (
+      //check if the time is already 0
+      //if so then call pause
+      this.state.millseconds === 0 &&
+      this.state.minute === 0 &&
+      this.state.seconds === 0 &&
+      this.state.counting === true
+    )
+      this.pauseTimer();
+    else if (this.state.counting === true) {
+      //handle normal count down
+      this.setState({ millseconds: this.state.millseconds - 3 });
+
+      if (this.state.millseconds <= 0) {
+        if (this.state.seconds === 0) {
+          if (this.state.minute === 0) {
+            this.pauseTimer();
+            return;
+          }
+          this.setState({ minute: this.state.minute - 1 });
+          this.setState({ seconds: 60 });
+        }
+        this.setState({ seconds: this.state.seconds - 1 });
+        this.setState({ millseconds: 60 });
+      }
+    }
+  }
+  startTimer() {
+    //handle pause
+    if (this.state.counting === true) {
+      this.pauseTimer();
+    } else {
+      //handle start or resume
+      this.setState({
+        setIntervalId: setInterval(this.timeCountDown, 1000 / 20),
+        timerEnable: true,
+        counting: true,
+      });
+    }
+    // console.log(this.state.counting);
+  }
+  pauseTimer() {
+    this.setState({
+      counting: false,
+      timerEnable: false,
+    });
+    clearInterval(this.state.setIntervalId);
+  }
+  resetTimer() {
+    this.setState({
+      counting: false,
+      timerEnable: false,
+      minute: this.countDownTimeMin,
+      seconds: this.countDownTimeSec,
+      millseconds: this.countDownTimeMillSec,
+    });
+    clearInterval(this.state.setIntervalId);
+  }
+  configUp() {
+    if (this.state.minute >= 60) {
+      this.setState({ minute: 60, seconds: 0 });
+    } else if (this.state.seconds + 1 >= 60) {
+      this.setState({ minute: this.state.minute + 1, seconds: 0 });
+    } else this.setState({ seconds: this.state.seconds + 1 });
+  }
+  configDown() {
+    if (this.state.seconds - 1 < 0 && this.state.minute === 0) {
+      this.setState({ minute: 0, seconds: 0 });
+    } else if (this.state.seconds - 1 < 0) {
+      this.setState({ minute: this.state.minute - 1, seconds: 59 });
+    } else this.setState({ seconds: this.state.seconds - 1 });
+  }
+
   render() {
     return (
       <div className="mainPageStyle">
@@ -98,7 +194,20 @@ class App extends Component {
             />
           </div>
           <div className="column middle">
-            <Timer score={this.state.score} time={this.state.time} />
+            <Timer
+              score={this.state.score}
+              minute={this.state.minute}
+              seconds={this.state.seconds}
+              millseconds={this.state.millseconds}
+              timerEnable={this.state.timerEnable}
+              counting={this.state.counting}
+              timeCountDown={this.timeCountDown}
+              startTimer={this.startTimer}
+              pauseTimer={this.pauseTimer}
+              resetTimer={this.resetTimer}
+              configUp={this.configUp}
+              configDown={this.configDown}
+            />
           </div>
           <div className="column right" style={{ textAlign: "center" }}>
             <ScoreBoard
