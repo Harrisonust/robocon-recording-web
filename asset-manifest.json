@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Harrisonust/Harrisonust.github.io.git/static/css/main.bc52c824.chunk.css",
+    "main.js": "/Harrisonust/Harrisonust.github.io.git/static/js/main.be4df02a.chunk.js",
+    "main.js.map": "/Harrisonust/Harrisonust.github.io.git/static/js/main.be4df02a.chunk.js.map",
+    "runtime-main.js": "/Harrisonust/Harrisonust.github.io.git/static/js/runtime-main.ab7be362.js",
+    "runtime-main.js.map": "/Harrisonust/Harrisonust.github.io.git/static/js/runtime-main.ab7be362.js.map",
+    "static/css/2.13fd37b7.chunk.css": "/Harrisonust/Harrisonust.github.io.git/static/css/2.13fd37b7.chunk.css",
+    "static/js/2.5ce2011c.chunk.js": "/Harrisonust/Harrisonust.github.io.git/static/js/2.5ce2011c.chunk.js",
+    "static/js/2.5ce2011c.chunk.js.map": "/Harrisonust/Harrisonust.github.io.git/static/js/2.5ce2011c.chunk.js.map",
+    "index.html": "/Harrisonust/Harrisonust.github.io.git/index.html",
+    "static/css/2.13fd37b7.chunk.css.map": "/Harrisonust/Harrisonust.github.io.git/static/css/2.13fd37b7.chunk.css.map",
+    "static/css/main.bc52c824.chunk.css.map": "/Harrisonust/Harrisonust.github.io.git/static/css/main.bc52c824.chunk.css.map",
+    "static/js/2.5ce2011c.chunk.js.LICENSE.txt": "/Harrisonust/Harrisonust.github.io.git/static/js/2.5ce2011c.chunk.js.LICENSE.txt",
+    "static/media/mainApp.css": "/Harrisonust/Harrisonust.github.io.git/static/media/background.de0687c9.jpg",
+    "static/media/gamefield.327b5015.png": "/Harrisonust/Harrisonust.github.io.git/static/media/gamefield.327b5015.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ab7be362.js",
+    "static/css/2.13fd37b7.chunk.css",
+    "static/js/2.5ce2011c.chunk.js",
+    "static/css/main.bc52c824.chunk.css",
+    "static/js/main.be4df02a.chunk.js"
+  ]
+}
