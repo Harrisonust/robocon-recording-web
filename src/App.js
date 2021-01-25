@@ -29,7 +29,7 @@ class App extends Component {
         secondTwinning: 3,
       },
       PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-
+      lastPots: -1,
       //panel state
 
       //timer state
@@ -58,6 +58,11 @@ class App extends Component {
   //GameField functions start here
   ScoreHandler = (index) => {
     //updating score
+    if (index === this.state.lastPots) {
+      return;
+    } else {
+      this.setState({ lastPots: index });
+    }
     var newScore = [this.state.Score[0], this.state.Score[1]];
 
     if (index < 5) {
