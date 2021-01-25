@@ -20,9 +20,9 @@ class Timer extends Component {
   renderTimer() {
     let className = "badge badge-";
     if (
-      this.props.millseconds === 0 &&
-      this.props.minute === 0 &&
-      this.props.seconds === 0
+      this.props.nowTime.millseconds === 0 &&
+      this.props.nowTime.minutes === 0 &&
+      this.props.nowTime.seconds === 0
     ) {
       className += "danger";
     } else {
@@ -42,12 +42,12 @@ class Timer extends Component {
   }
 
   getTimeString() {
-    let minUp = parseInt(this.props.minute / 10);
-    let minDown = parseInt(this.props.minute % 10);
-    let secUp = parseInt(this.props.seconds / 10);
-    let secDown = parseInt(this.props.seconds % 10);
-    let millsecUp = parseInt(this.props.millseconds / 10);
-    let millsecDown = parseInt(this.props.millseconds % 10);
+    let minUp = parseInt(this.props.nowTime.minutes / 10);
+    let minDown = parseInt(this.props.nowTime.minutes % 10);
+    let secUp = parseInt(this.props.nowTime.seconds / 10);
+    let secDown = parseInt(this.props.nowTime.seconds % 10);
+    let millsecUp = parseInt(this.props.nowTime.millseconds / 10);
+    let millsecDown = parseInt(this.props.nowTime.millseconds % 10);
     return (
       minUp.toString(10) +
       minDown.toString(10) +
