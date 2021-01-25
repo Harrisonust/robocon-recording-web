@@ -95,6 +95,13 @@ class Timer extends Component {
           >
             Reset
           </button>
+          <label className="switch">
+            <input
+              type="checkbox"
+              onClick={(event) => this.props.setMode(event)}
+            />
+            <span className="slider round"></span>
+          </label>
         </div>
       </div>
     );

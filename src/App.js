@@ -9,9 +9,6 @@ import Panel from "./components/Panel/Panel";
 import GameField from "./components/GameField/GameField";
 import ScoreBoard from "./components/ScoreBoard/ScoreBoard";
 //init the timer by these value
-const countDownTimeMin = 1;
-const countDownTimeSec = 1;
-const countDownTimeMillSec = 0;
 
 class App extends Component {
   constructor(props) {
@@ -36,9 +33,12 @@ class App extends Component {
       //panel state
 
       //timer state
-      minute: countDownTimeMin,
-      seconds: countDownTimeSec,
-      millseconds: countDownTimeMillSec,
+      countDownTimeMin: 1,
+      countDownTimeSec: 0,
+      countDownTimeMillSec: 0,
+      minute: 1,
+      seconds: 0,
+      millseconds: 0, //TODO
       timerEnable: false,
       counting: false,
     };
@@ -52,6 +52,7 @@ class App extends Component {
     this.resetTimer = this.resetTimer.bind(this);
     this.configUp = this.configUp.bind(this);
     this.configDown = this.configDown.bind(this);
+    this.setMode = this.setMode.bind(this);
   }
 
   //GameField functions start here
@@ -163,9 +164,9 @@ class App extends Component {
     this.setState({
       counting: false,
       timerEnable: false,
-      minute: countDownTimeMin,
-      seconds: countDownTimeSec,
-      millseconds: countDownTimeMillSec,
+      minute: this.state.countDownTimeMin,
+      seconds: this.state.countDownTimeSec,
+      millseconds: this.state.countDownTimeMillSec,
     });
     clearInterval(this.state.setIntervalId);
   }
@@ -183,6 +184,19 @@ class App extends Component {
       this.setState({ minute: this.state.minute - 1, seconds: 59 });
     } else this.setState({ seconds: this.state.seconds - 1 });
   }
+  setMode(event) {
+    if (event.target.checked) {
+      console.log("true");
+      this.setState({ countDownTimeMin: 3 }, () => {
+        this.resetTimer();
+      });
+    } else {
+      console.log("false");
+      this.setState({ countDownTimeMin: 1 }, () => {
+        this.resetTimer();
+      });
+    }
+  }
 
   render() {
     return (
@@ -199,6 +213,9 @@ class App extends Component {
               minute={this.state.minute}
               seconds={this.state.seconds}
               millseconds={this.state.millseconds}
+              countDownTimeMin={this.state.countDownTimeMin}
+              countDownTimeSec={this.state.countDownTimeSec}
+              countDownTimeMillSec={this.countDownTimeMillSec}
               timerEnable={this.state.timerEnable}
               counting={this.state.counting}
               timeCountDown={this.timeCountDown}
@@ -207,6 +224,7 @@ class App extends Component {
               resetTimer={this.resetTimer}
               configUp={this.configUp}
               configDown={this.configDown}
+              setMode={this.setMode}
             />
           </div>
           <div className="column right" style={{ textAlign: "center" }}>
