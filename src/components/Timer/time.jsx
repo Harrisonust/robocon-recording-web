@@ -1,8 +1,8 @@
 class Time {
-  constructor(minutes, seconds, millseconds) {
+  constructor(minutes, seconds, milliseconds) {
     this.minutes = minutes;
     this.seconds = seconds;
-    this.millseconds = millseconds;
+    this.milliseconds = milliseconds;
   }
 }
 export default Time;

@@ -120,40 +120,31 @@ class App extends Component {
     this.setState({ Score: newScore });
   };
 
-  //timer functions start here
   timeCountDown() {
-    console.log(this.state.nowTime);
+    var { minutes, seconds, milliseconds } = this.state.nowTime;
     if (
-      //check if the nowTime is already 0
+      //check if the time is already 0
       //if so then call pause
-      this.state.nowTime.millseconds === 0 &&
-      this.state.nowTime.seconds === 0 &&
-      this.state.nowTime.minute === 0 &&
-      this.state.nowTime.counting === true
+      milliseconds === 0 &&
+      minutes === 0 &&
+      seconds === 0 &&
+      this.state.counting === true
     )
       this.pauseTimer();
     else if (this.state.counting === true) {
       //handle normal count down
       this.setState({
-        nowTime: new Time(
-          this.state.nowTime.minutes,
-          this.state.nowTime.seconds,
-          this.state.nowTime.millseconds - 3
-        ),
+        nowTime: new Time(minutes, seconds, milliseconds - 3),
       });
 
-      if (this.state.nowTime.millseconds <= 0) {
-        if (this.state.nowTime.seconds === 0) {
-          if (this.state.nowTime.minutes === 0) {
+      if (milliseconds <= 0) {
+        if (seconds === 0) {
+          if (minutes === 0) {
             this.pauseTimer();
             return;
           }
           this.setState({
-            nowTime: new Time(
-              this.state.nowTime.minutes - 1,
-              60,
-              this.state.nowTime.millseconds
-            ),
+            nowTime: new Time(minutes - 1, 60, milliseconds),
           });
         }
         this.setState({
@@ -187,92 +178,61 @@ class App extends Component {
     clearInterval(this.state.setIntervalId);
   }
   resetTimer() {
+    var { minutes, seconds, milliseconds } = this.state.countDownInitTime;
     this.setState({
       counting: false,
       timerEnable: false,
-      nowTime: new Time(
-        this.state.countDownInitTime.minutes,
-        this.state.countDownInitTime.seconds,
-        this.state.countDownInitTime.millseconds
-      ),
+      nowTime: new Time(minutes, seconds, milliseconds),
     });
     clearInterval(this.state.setIntervalId);
   }
   configUp() {
-    if (this.state.nowTime.minutes >= 60) {
+    var { minutes, seconds, milliseconds } = this.state.nowTime;
+
+    if (minutes >= 60) {
       this.setState({ nowTime: new Time(60, 0, this.nowTime.milliseconds) });
-    } else if (this.state.nowTime.seconds + 1 >= 60) {
+    } else if (seconds + 1 >= 60) {
       this.setState({
-        nowTime: new Time(
-          this.state.nowTime.minutes + 1,
-          0,
-          this.state.nowTime.millseconds
-        ),
+        nowTime: new Time(minutes + 1, 0, milliseconds),
       });
     } else {
       this.setState({
-        nowTime: new Time(
-          this.state.nowTime.minutes,
-          this.state.nowTime.seconds + 1,
-          this.state.nowTime.millseconds
-        ),
+        nowTime: new Time(minutes, seconds + 1, milliseconds),
       });
     }
   }
   configDown() {
-    if (
-      this.state.nowTime.seconds - 1 < 0 &&
-      this.state.nowTime.minutes === 0
-    ) {
+    var { minutes, seconds, milliseconds } = this.state.nowTime;
+
+    if (seconds - 1 < 0 && minutes === 0) {
       this.setState({
-        nowTime: new Time(0, 0, this.state.nowTime.millseconds),
+        nowTime: new Time(0, 0, milliseconds),
       });
-    } else if (this.state.nowTime.seconds - 1 < 0) {
+    } else if (seconds - 1 < 0) {
       this.setState({
-        nowTime: new Time(
-          this.state.nowTime.minutes - 1,
-          59,
-          this.state.nowTime.millseconds
-        ),
+        nowTime: new Time(minutes - 1, 59, milliseconds),
       });
     } else {
       this.setState({
-        nowTime: new Time(
-          this.state.nowTime.minutes,
-          this.state.nowTime.seconds - 1,
-          this.state.nowTime.millseconds
-        ),
+        nowTime: new Time(minutes, seconds - 1, milliseconds),
       });
     }
   }
   setMode(event) {
+    var { minutes, seconds, milliseconds } = this.state.countDownInitTime;
     if (event.target.checked) {
-      // this.setState({ countDownTimeMin: 3 }, () => {
-      //   this.resetTimer();
-      // });
       this.setState(
         {
-          countDownInitTime: new Time(
-            3,
-            this.state.countDownInitTime.seconds,
-            this.state.countDownInitTime.millseconds
-          ),
+          countDownInitTime: new Time(3, seconds, milliseconds),
         },
         () => {
           this.resetTimer();
         }
       );
     } else {
-      // this.setState({ countDownTimeMin: 1 }, () => {
-      //   this.resetTimer();
-      // });
       this.setState(
         {
-          countDownInitTime: new Time(
-            1,
-            this.state.countDownInitTime.seconds,
-            this.state.countDownInitTime.millseconds
-          ),
+          countDownInitTime: new Time(1, seconds, milliseconds),
         },
         () => {
           this.resetTimer();

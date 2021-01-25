@@ -20,7 +20,7 @@ class Timer extends Component {
   renderTimer() {
     let className = "badge badge-";
     if (
-      this.props.nowTime.millseconds === 0 &&
+      this.props.nowTime.milliseconds === 0 &&
       this.props.nowTime.minutes === 0 &&
       this.props.nowTime.seconds === 0
     ) {
@@ -46,8 +46,8 @@ class Timer extends Component {
     let minDown = parseInt(this.props.nowTime.minutes % 10);
     let secUp = parseInt(this.props.nowTime.seconds / 10);
     let secDown = parseInt(this.props.nowTime.seconds % 10);
-    let millsecUp = parseInt(this.props.nowTime.millseconds / 10);
-    let millsecDown = parseInt(this.props.nowTime.millseconds % 10);
+    let millsecUp = parseInt(this.props.nowTime.milliseconds / 10);
+    let millsecDown = parseInt(this.props.nowTime.milliseconds % 10);
     return (
       minUp.toString(10) +
       minDown.toString(10) +
