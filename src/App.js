@@ -8,13 +8,15 @@ import Timer from "./components/Timer/timer";
 import Panel from "./components/Panel/Panel";
 import GameField from "./components/GameField/GameField";
 import ScoreBoard from "./components/ScoreBoard/ScoreBoard";
+//init the timer by these value
+const countDownTimeMin = 1;
+const countDownTimeSec = 1;
+const countDownTimeMillSec = 0;
+
 class App extends Component {
   constructor(props) {
     super(props);
-    //init the timer by these value
-    this.countDownTimeMin = 1;
-    this.countDownTimeSec = 0;
-    this.countDownTimeMillSec = 0;
+
     //used for interval control
     this.setIntervalId = {};
 
@@ -34,9 +36,9 @@ class App extends Component {
       //panel state
 
       //timer state
-      minute: this.countDownTimeMin,
-      seconds: this.countDownTimeSec,
-      millseconds: this.countDownTimeMillSec,
+      minute: countDownTimeMin,
+      seconds: countDownTimeSec,
+      millseconds: countDownTimeMillSec,
       timerEnable: false,
       counting: false,
     };
@@ -161,9 +163,9 @@ class App extends Component {
     this.setState({
       counting: false,
       timerEnable: false,
-      minute: this.countDownTimeMin,
-      seconds: this.countDownTimeSec,
-      millseconds: this.countDownTimeMillSec,
+      minute: countDownTimeMin,
+      seconds: countDownTimeSec,
+      millseconds: countDownTimeMillSec,
     });
     clearInterval(this.state.setIntervalId);
   }
@@ -194,7 +196,6 @@ class App extends Component {
           </div>
           <div className="column middle">
             <Timer
-              score={this.state.score}
               minute={this.state.minute}
               seconds={this.state.seconds}
               millseconds={this.state.millseconds}
