@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
 
     //used for interval control
-    this.setIntervalId = {};
+    this.intervaID = {};
 
     this.state = {
       // common state
@@ -164,7 +164,7 @@ class App extends Component {
     } else {
       //handle start or resume
       this.setState({
-        setIntervalId: setInterval(this.timeCountDown, 1000 / 20),
+        intervaID: setInterval(this.timeCountDown, 1000 / 20),
         timerEnable: true,
         counting: true,
       });
@@ -175,7 +175,7 @@ class App extends Component {
       counting: false,
       timerEnable: false,
     });
-    clearInterval(this.state.setIntervalId);
+    clearInterval(this.state.intervaID);
   }
   resetTimer() {
     var { minutes, seconds, milliseconds } = this.state.countDownInitTime;
@@ -184,7 +184,7 @@ class App extends Component {
       timerEnable: false,
       nowTime: new Time(minutes, seconds, milliseconds),
     });
-    clearInterval(this.state.setIntervalId);
+    clearInterval(this.state.intervaID);
   }
   configUp() {
     var { minutes, seconds, milliseconds } = this.state.nowTime;
