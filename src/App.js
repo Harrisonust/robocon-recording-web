@@ -57,6 +57,14 @@ class App extends Component {
 
   //GameField functions start here
   ScoreHandler = (index) => {
+    //updating pots
+    var newList = [];
+    for (var x = 0; x < this.state.PotsStatus.length; x++) {
+      if (x === index) newList.push(this.state.PotsStatus[x] + 1);
+      else newList.push(this.state.PotsStatus[x]);
+    }
+    this.setState({ PotsStatus: newList });
+
     //updating score
     if (
       (index < 5 && index === this.state.lastPots[0]) ||
@@ -97,14 +105,6 @@ class App extends Component {
       }
     }
     this.setState({ Score: newScore });
-
-    //updating pots
-    var newList = [];
-    for (var x = 0; x < this.state.PotsStatus.length; x++) {
-      if (x === index) newList.push(this.state.PotsStatus[x] + 1);
-      else newList.push(this.state.PotsStatus[x]);
-    }
-    this.setState({ PotsStatus: newList });
   };
 
   //Panel functions start here
@@ -162,7 +162,6 @@ class App extends Component {
         counting: true,
       });
     }
-    // console.log(this.state.counting);
   }
   pauseTimer() {
     this.setState({
@@ -197,12 +196,10 @@ class App extends Component {
   }
   setMode(event) {
     if (event.target.checked) {
-      console.log("true");
       this.setState({ countDownTimeMin: 3 }, () => {
         this.resetTimer();
       });
     } else {
-      console.log("false");
       this.setState({ countDownTimeMin: 1 }, () => {
         this.resetTimer();
       });
