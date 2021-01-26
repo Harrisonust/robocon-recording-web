@@ -8,6 +8,7 @@ import "./styles/recording.css";
 import Timer from "./components/Timer/timer";
 import Panel from "./components/Panel/Panel";
 import GameField from "./components/GameField/GameField";
+import ScoreBoard from "./components/ScoreBoard/ScoreBoard";
 
 import Time from "./components/Timer/time";
 
@@ -268,9 +269,6 @@ class App extends Component {
       counting: false,
       timerEnable: false,
       nowTime: new Time(minutes, seconds, milliseconds),
-      Score: [0, 0],
-      blue: [],
-      red: [],
     });
     clearInterval(this.state.intervaID);
 
@@ -331,6 +329,7 @@ class App extends Component {
       );
     }
   }
+
   resetAll() {
     this.setState({
       nowTime: this.state.countDownInitTime,
@@ -338,13 +337,21 @@ class App extends Component {
       potsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       arrowNumbers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       lastPots: [-1, -1],
+      blue: [],
+      red: [],
     });
   }
+
   render() {
     return (
       <div className="mainPageStyle">
         <div className="row">
           <div className="column left" style={{ textAlign: "center" }}>
+            {/*<ScoreBoard
+              className="ScoreBoardCenter"
+              Score={this.state.Score[0]}
+              index={0}
+            />*/}
             <span
               type="button"
               className="badge"
@@ -369,6 +376,11 @@ class App extends Component {
             />
           </div>
           <div className="column right" style={{ textAlign: "center" }}>
+            {/*<ScoreBoard
+              className="ScoreBoardCenter"
+              Score={this.state.Score[1]}
+              index={1}
+            />*/}
             <span
               type="button"
               className="badge"
