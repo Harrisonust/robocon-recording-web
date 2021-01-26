@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    //used for interval control
+    //used for timer interval control
     this.intervaID = {};
 
     this.state = {
