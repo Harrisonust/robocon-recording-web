@@ -11,6 +11,8 @@ class BasketButton extends Component {
       points: 0,
       arrows_on_rack: 5,
       arrows: 0,
+      state_named_up: "none",
+      state_named_down: "none",
       restart: false,
       scored_basket: "none",
       prev_scored_basket: "none",
@@ -171,6 +173,24 @@ class BasketButton extends Component {
       let state_type;
       state_type = "btn";
       this.setState({ state_button_type: state_type });
+
+      if (named === "button_scored I") {
+        let state_named_up;
+        let state_named_down;
+        state_named_up = "Type right";
+        state_named_down = "Type left";
+
+        this.setState({ state_named_up: state_named_up });
+        this.setState({ state_named_down: state_named_down });
+      } else if (named === "button_scored II") {
+        let state_named_up;
+        let state_named_down;
+        state_named_up = "Type up";
+        state_named_down = "Type down";
+
+        this.setState({ state_named_up: state_named_up });
+        this.setState({ state_named_down: state_named_down });
+      }
     }
   };
 
@@ -417,7 +437,7 @@ class BasketButton extends Component {
             onClick={() => this.handleTypeOfBasket("button_type up")}
             style={{ width: "50%" }}
           >
-            Type Up
+            {this.state.state_named_up}
           </button>
           <button
             type="button"
@@ -426,7 +446,7 @@ class BasketButton extends Component {
             onClick={() => this.handleTypeOfBasket("button_type down")}
             style={{ width: "50%" }}
           >
-            Type Down
+            {this.state.state_named_down}
           </button>
         </div>
 
