@@ -113,35 +113,35 @@ class GameField extends Component {
 
         <div>
           <p className="PotsStatus p0">
-            {this.props.arrowNumbers[9]}
+            {this.props.arrowNumbers[5]}
             <br />
           </p>
           <p className="PotsStatus p1">
-            {this.props.arrowNumbers[1]} <br />
+            {this.props.arrowNumbers[0]} <br />
           </p>
           <p className="PotsStatus p2">
             {this.props.arrowNumbers[2]} <br />
           </p>
           <p className="PotsStatus p3">
-            {this.props.arrowNumbers[3]} <br />
-          </p>
-          <p className="PotsStatus p4">
             {this.props.arrowNumbers[4]} <br />
           </p>
+          <p className="PotsStatus p4">
+            {this.props.arrowNumbers[3]} <br />
+          </p>
           <p className="PotsStatus p5">
-            {this.props.arrowNumbers[5]} <br />
-          </p>
-          <p className="PotsStatus p6">
-            {this.props.arrowNumbers[6]} <br />
-          </p>
-          <p className="PotsStatus p7">
             {this.props.arrowNumbers[7]} <br />
           </p>
-          <p className="PotsStatus p8">
+          <p className="PotsStatus p6">
+            {this.props.arrowNumbers[9]} <br />
+          </p>
+          <p className="PotsStatus p7">
             {this.props.arrowNumbers[8]} <br />
           </p>
+          <p className="PotsStatus p8">
+            {this.props.arrowNumbers[6]} <br />
+          </p>
           <p className="PotsStatus p9">
-            {this.props.arrowNumbers[0]} <br />
+            {this.props.arrowNumbers[1]} <br />
           </p>
         </div>
       </div>
