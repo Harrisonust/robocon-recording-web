@@ -177,8 +177,8 @@ class BasketButton extends Component {
       if (named === "button_scored I") {
         let state_named_up;
         let state_named_down;
-        state_named_up = "Type right";
-        state_named_down = "Type left";
+        state_named_up = "Type left";
+        state_named_down = "Type right";
 
         this.setState({ state_named_up: state_named_up });
         this.setState({ state_named_down: state_named_down });
