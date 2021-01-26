@@ -14,16 +14,15 @@ class GameField extends Component {
         <map name="GameField">
           <area
             shape="circle"
-            coords="201, 287, 10"
+            coords="201,316,10"
             alt="buttonerror"
             href="#"
-            onClick={() => this.props.ScoreHandler(9)}
+            onClick={() => this.props.ScoreHandler(0)}
             hover="true"
-            className="test"
           />
           <area
             shape="circle"
-            coords="201,316,10"
+            coords="403,316,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.props.ScoreHandler(1)}
@@ -37,10 +36,9 @@ class GameField extends Component {
             onClick={() => this.props.ScoreHandler(2)}
             hover="true"
           />
-
           <area
             shape="circle"
-            coords="285,302,10"
+            coords="285,428,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.props.ScoreHandler(3)}
@@ -48,7 +46,7 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="285,428,10"
+            coords="285,302,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.props.ScoreHandler(4)}
@@ -56,24 +54,24 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="320,176,10"
+            coords="201, 287, 10"
             alt="buttonerror"
             href="#"
             onClick={() => this.props.ScoreHandler(5)}
             hover="true"
+            className="test"
           />
           <area
             shape="circle"
-            coords="320,302,10"
+            coords="403,287,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.props.ScoreHandler(6)}
             hover="true"
           />
-
           <area
             shape="circle"
-            coords="320,428,10"
+            coords="320,176,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.props.ScoreHandler(7)}
@@ -81,7 +79,7 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="403,287,10"
+            coords="320,428,10"
             alt="buttonerror"
             href="#"
             onClick={() => this.props.ScoreHandler(8)}
@@ -89,10 +87,10 @@ class GameField extends Component {
           />
           <area
             shape="circle"
-            coords="403,316,10"
+            coords="320,302,10"
             alt="buttonerror"
             href="#"
-            onClick={() => this.props.ScoreHandler(0)}
+            onClick={() => this.props.ScoreHandler(9)}
             hover="true"
           />
         </map>
