@@ -2,20 +2,6 @@ import React, { Component } from "react";
 import "../../styles/GameField.css";
 import GameFieldImage from "../../img/gamefield.png";
 class GameField extends Component {
-  point_spec = {
-    x1: 200,
-    x2: 284,
-    x3: 320,
-    x4: 403,
-    y1: 176,
-    y2: 287,
-    y3: 316,
-    y4: 428,
-    rad: 8,
-  };
-
-  state = {};
-
   render() {
     return (
       <div>
