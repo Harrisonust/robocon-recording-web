@@ -31,6 +31,7 @@ class App extends Component {
         secondTwinning: 3,
       },
       PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      arrowNumbers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       lastPots: [-1, -1],
       //panel state
 
@@ -55,16 +56,15 @@ class App extends Component {
 
   //GameField functions start here
   ScoreHandler = (index) => {
-    console.log(this.state.nowTime);
-    //updating pots
-    var newList = [];
-    for (var x = 0; x < this.state.PotsStatus.length; x++) {
-      if (x === index) newList.push(this.state.PotsStatus[x] + 1);
-      else newList.push(this.state.PotsStatus[x]);
+    //updating arrow numbers
+    var newArrowNumber = [];
+    for (var x = 0; x < this.state.arrowNumbers.length; x++) {
+      if (x === index) newArrowNumber.push(this.state.arrowNumbers[x] + 1);
+      else newArrowNumber.push(this.state.arrowNumbers[x]);
     }
-    this.setState({ PotsStatus: newList });
+    this.setState({ arrowNumbers: newArrowNumber });
 
-    //updating score
+    //filter out consecutive shot in same pot and update the last pot index
     if (
       (index < 5 && index === this.state.lastPots[0]) ||
       (index >= 5 && index === this.state.lastPots[1])
@@ -76,8 +76,17 @@ class App extends Component {
       else nowPots[1] = index;
       this.setState({ lastPots: nowPots });
     }
-    var newScore = [this.state.Score[0], this.state.Score[1]];
 
+    //updating pots status
+    var newPotsStatus = [];
+    for (var x = 0; x < this.state.PotsStatus.length; x++) {
+      if (x === index) newPotsStatus.push(this.state.PotsStatus[x] + 1);
+      else newPotsStatus.push(this.state.PotsStatus[x]);
+    }
+    this.setState({ PotsStatus: newPotsStatus });
+
+    //updating score
+    var newScore = [this.state.Score[0], this.state.Score[1]];
     if (index < 5) {
       if (this.state.PotsStatus[index] === 0) {
         newScore[0] += this.state.PotsScoreTable.firstSingle;
@@ -284,6 +293,7 @@ class App extends Component {
           <GameField
             Score={this.state.Score}
             PotsStatus={this.state.PotsStatus}
+            arrowNumbers={this.state.arrowNumbers}
             ScoreHandler={this.ScoreHandler}
           />
           <div>
