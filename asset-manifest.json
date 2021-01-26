@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/Harrisonust/Harrisonust.github.io.git/static/css/main.bc52c824.chunk.css",
-    "main.js": "/Harrisonust/Harrisonust.github.io.git/static/js/main.be4df02a.chunk.js",
-    "main.js.map": "/Harrisonust/Harrisonust.github.io.git/static/js/main.be4df02a.chunk.js.map",
-    "runtime-main.js": "/Harrisonust/Harrisonust.github.io.git/static/js/runtime-main.ab7be362.js",
-    "runtime-main.js.map": "/Harrisonust/Harrisonust.github.io.git/static/js/runtime-main.ab7be362.js.map",
-    "static/css/2.13fd37b7.chunk.css": "/Harrisonust/Harrisonust.github.io.git/static/css/2.13fd37b7.chunk.css",
-    "static/js/2.5ce2011c.chunk.js": "/Harrisonust/Harrisonust.github.io.git/static/js/2.5ce2011c.chunk.js",
-    "static/js/2.5ce2011c.chunk.js.map": "/Harrisonust/Harrisonust.github.io.git/static/js/2.5ce2011c.chunk.js.map",
-    "index.html": "/Harrisonust/Harrisonust.github.io.git/index.html",
-    "static/css/2.13fd37b7.chunk.css.map": "/Harrisonust/Harrisonust.github.io.git/static/css/2.13fd37b7.chunk.css.map",
-    "static/css/main.bc52c824.chunk.css.map": "/Harrisonust/Harrisonust.github.io.git/static/css/main.bc52c824.chunk.css.map",
-    "static/js/2.5ce2011c.chunk.js.LICENSE.txt": "/Harrisonust/Harrisonust.github.io.git/static/js/2.5ce2011c.chunk.js.LICENSE.txt",
-    "static/media/mainApp.css": "/Harrisonust/Harrisonust.github.io.git/static/media/background.de0687c9.jpg",
-    "static/media/gamefield.327b5015.png": "/Harrisonust/Harrisonust.github.io.git/static/media/gamefield.327b5015.png"
+    "main.css": "/robocon-recording-web/static/css/main.06459cac.chunk.css",
+    "main.js": "/robocon-recording-web/static/js/main.0855ea2c.chunk.js",
+    "main.js.map": "/robocon-recording-web/static/js/main.0855ea2c.chunk.js.map",
+    "runtime-main.js": "/robocon-recording-web/static/js/runtime-main.8d9a185e.js",
+    "runtime-main.js.map": "/robocon-recording-web/static/js/runtime-main.8d9a185e.js.map",
+    "static/css/2.13fd37b7.chunk.css": "/robocon-recording-web/static/css/2.13fd37b7.chunk.css",
+    "static/js/2.40f87d19.chunk.js": "/robocon-recording-web/static/js/2.40f87d19.chunk.js",
+    "static/js/2.40f87d19.chunk.js.map": "/robocon-recording-web/static/js/2.40f87d19.chunk.js.map",
+    "index.html": "/robocon-recording-web/index.html",
+    "static/css/2.13fd37b7.chunk.css.map": "/robocon-recording-web/static/css/2.13fd37b7.chunk.css.map",
+    "static/css/main.06459cac.chunk.css.map": "/robocon-recording-web/static/css/main.06459cac.chunk.css.map",
+    "static/js/2.40f87d19.chunk.js.LICENSE.txt": "/robocon-recording-web/static/js/2.40f87d19.chunk.js.LICENSE.txt",
+    "static/media/arrow.27a85ba5.png": "/robocon-recording-web/static/media/arrow.27a85ba5.png",
+    "static/media/mainApp.css": "/robocon-recording-web/static/media/background.de0687c9.jpg",
+    "static/media/gamefield.327b5015.png": "/robocon-recording-web/static/media/gamefield.327b5015.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.ab7be362.js",
+    "static/js/runtime-main.8d9a185e.js",
     "static/css/2.13fd37b7.chunk.css",
-    "static/js/2.5ce2011c.chunk.js",
-    "static/css/main.bc52c824.chunk.css",
-    "static/js/main.be4df02a.chunk.js"
+    "static/js/2.40f87d19.chunk.js",
+    "static/css/main.06459cac.chunk.css",
+    "static/js/main.0855ea2c.chunk.js"
   ]
 }
