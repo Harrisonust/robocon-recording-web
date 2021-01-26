@@ -1,29 +1,81 @@
 import React, { Component } from "react";
 import "../../styles/panel-list-style.css";
 
+import Arrow from "../../img/arrow.png";
+
 class BasketButton extends Component {
   constructor(props) {
     super(props);
 
-    this.handleClickedScored = this.handleClickedScored.bind(this);
-
     this.state = {
       points: 0,
+      arrows_on_rack: 5,
       arrows: 0,
+      restart: false,
       scored_basket: "none",
       prev_scored_basket: "none",
-      state_button_reload: "btn",
+      state_button_reload: this.props.start,
       state_button_shoot: "disabled",
       state_button_scored: "disabled",
       state_button_missed: "disabled",
       state_button_type: "disabled",
       violations: 0,
-      basket: [],
+      basket: [0, 0, 0, 0, 0],
     };
   }
 
+  UNSAFE_componentWillReceiveProps(newProps) {
+    if (this.state.state_button_reload !== newProps.start) {
+      this.setState({ state_button_reload: newProps.start });
+    }
+
+    if (this.state.restart !== newProps.restart) {
+      if (newProps.restart === true) {
+        console.log(newProps.restart);
+        this.setState({
+          points: 0,
+          arrows: 0,
+          restart: false,
+          scored_basket: "none",
+          prev_scored_basket: "none",
+          state_button_reload: this.props.start,
+          state_button_shoot: "disabled",
+          state_button_scored: "disabled",
+          state_button_missed: "disabled",
+          state_button_type: "disabled",
+          violations: 0,
+          basket: [0, 0, 0, 0, 0],
+        });
+      }
+    }
+  }
+
+  checkVictory = () => {
+    if (
+      this.state.basket[0] >= 2 &&
+      this.state.basket[1] >= 2 &&
+      this.state.basket[2] >= 2 &&
+      this.state.basket[3] >= 2 &&
+      this.state.basket[4] >= 2
+    ) {
+      this.props.handleGreatVictory("FINISHED", this.props.index);
+
+      this.setState({ state_button_reload: "disabled" });
+      this.setState({ state_button_shoot: "disabled" });
+      this.setState({ state_button_scored: "disabled" });
+      this.setState({ state_button_missed: "disabled" });
+      this.setState({ state_button_type: "disabled" });
+    } else {
+      this.props.handleGreatVictory("NOT YET", this.props.index);
+    }
+  };
+
   handleArrowReload = () => {
+    console.log(this.props.start);
     this.setState({ arrows: this.state.arrows + 1 });
+    if (this.state.arrows_on_rack > 0)
+      this.setState({ arrows_on_rack: this.state.arrows_on_rack - 1 });
+
     let state;
     let state_reload;
     if (this.state.arrows > 3) {
@@ -40,6 +92,13 @@ class BasketButton extends Component {
 
     this.setState({ state_button_reload: state_reload });
     this.setState({ state_button_shoot: state });
+
+    this.props.handleRecording("Arrow Reloaded", this.props.index);
+  };
+
+  handleReloadFailed = () => {
+    if (this.state.arrows_on_rack > 0)
+      this.setState({ arrows_on_rack: this.state.arrows_on_rack - 1 });
   };
 
   handleClickedShooting = () => {
@@ -59,6 +118,8 @@ class BasketButton extends Component {
     if (this.state.arrows > 0) {
       this.setState({ arrows: this.state.arrows - 1 });
     }
+
+    this.props.handleRecording("Arrow Shoot", this.props.index);
   };
 
   handleClickedScored = (named) => {
@@ -66,13 +127,20 @@ class BasketButton extends Component {
       let state;
       let state_reload;
       if (named !== this.state.prev_scored_basket) {
-        if (this.state.basket.indexOf(named) > -1) {
-          this.props.handleInfoCallBack(4, this.props.index);
-        } else {
-          this.props.handleInfoCallBack(1, this.props.index);
+        this.state.basket[4] += 1;
+        this.setState(this.state.basket);
+        if (this.state.basket[4] % 2 === 1 || this.state.basket[4] >= 5) {
+          this.props.handleInfoCallBack(1, 4, this.props.index);
+        } else if (this.state.basket[4] % 2 === 0 && this.state.basket[4] < 5) {
+          this.props.handleInfoCallBack(3, 4, this.props.index);
         }
+
+        this.props.handleRecording(
+          "Arrow scored at " + named,
+          this.props.index
+        );
       } else {
-        alert("No Points!");
+        this.props.handleInfoCallBack(0, 4, this.props.index);
       }
 
       if (this.state.arrows > 0) {
@@ -80,10 +148,11 @@ class BasketButton extends Component {
       } else {
         state = "disabled";
       }
-      state_reload = "btn";
-      this.state.basket.push(named);
 
-      this.setState(this.state.basket);
+      state_reload = "btn";
+
+      this.checkVictory();
+
       this.setState({ state_button_shoot: state });
       this.setState({ state_button_reload: state_reload });
       this.setState({ prev_scored_basket: named });
@@ -106,22 +175,63 @@ class BasketButton extends Component {
   };
 
   handleTypeOfBasket = (named) => {
+    let basket_index;
+
     if (
       this.state.scored_basket + " " + named !==
       this.state.prev_scored_basket
     ) {
-      if (
-        this.state.basket.indexOf(this.state.scored_basket + " " + named) > -1
-      ) {
-        this.props.handleInfoCallBack(4, this.props.index);
-      } else {
-        this.props.handleInfoCallBack(1, this.props.index);
+      switch (this.state.scored_basket + " " + named) {
+        case "button_scored I button_type up":
+          this.state.basket[0] += 1;
+          basket_index = 0;
+          break;
+        case "button_scored I button_type down":
+          this.state.basket[1] += 1;
+          basket_index = 1;
+          break;
+        case "button_scored II button_type up":
+          this.state.basket[2] += 1;
+          basket_index = 2;
+          break;
+        case "button_scored II button_type down":
+          this.state.basket[3] += 1;
+          basket_index = 3;
+          break;
       }
 
-      this.state.basket.push(this.state.scored_basket + " " + named);
       this.setState(this.state.basket);
+
+      if (
+        this.state.basket[basket_index] % 2 === 1 ||
+        this.state.basket[basket_index] >= 5
+      ) {
+        this.props.handleInfoCallBack(1, basket_index, this.props.index);
+      } else if (
+        this.state.basket[basket_index] % 2 === 0 &&
+        this.state.basket[basket_index] < 5
+      ) {
+        this.props.handleInfoCallBack(3, basket_index, this.props.index);
+      }
+
+      this.props.handleRecording("Arrow Scored at " + named, this.props.index);
     } else {
-      alert("No Points!");
+      switch (this.state.prev_scored_basket) {
+        case "button_scored I button_type up":
+          basket_index = 0;
+          break;
+        case "button_scored I button_type down":
+          basket_index = 1;
+          break;
+        case "button_scored II button_type up":
+          basket_index = 2;
+          break;
+        case "button_scored II button_type down":
+          basket_index = 3;
+          break;
+      }
+
+      this.props.handleInfoCallBack(0, basket_index, this.props.index);
     }
 
     this.setState({
@@ -141,6 +251,8 @@ class BasketButton extends Component {
 
     this.setState({ state_button_type: state_type });
     this.setState({ state_button_reload: state_reload });
+
+    this.checkVictory();
   };
 
   handleClickedMissed = () => {
@@ -164,15 +276,19 @@ class BasketButton extends Component {
       }
       this.setState({ state_button_shoot: state });
     }
+
+    this.props.handleRecording("Arrow Missed", this.props.index);
   };
 
   handleClickedViolation = () => {
     this.setState({ violations: this.state.violations + 1 });
+
+    this.props.handleRecording("Violation", this.props.index);
   };
   ///here
   formatCount() {
-    const points = this.props.Score;
-    return points === 0 ? "Zero" : points;
+    const arrows_on_rack = this.state.arrows_on_rack;
+    return arrows_on_rack === 0 ? "Zero" : arrows_on_rack;
   }
 
   formatCountArrow() {
@@ -189,13 +305,13 @@ class BasketButton extends Component {
     return (
       <div className="grid-container">
         <div>
-          {/* <span
+          {/*<span
             type="button"
             className="badge"
             style={{ fontSize: "200%", color: "white" }}
           >
-            Score : {this.formatCount()}
-          </span> */}
+            Arrows : {this.formatCount()}
+          </span>*/}
           <span
             type="button"
             className="badge"
@@ -227,7 +343,16 @@ class BasketButton extends Component {
             className="badge"
             style={{ fontSize: "150%", color: "white" }}
           >
-            Available Arrows : {this.formatCountArrow()}
+            Arrows Reloaded
+            <img
+              src={Arrow}
+              alt="arrow"
+              style={{
+                height: "40px",
+                widht: "auto",
+              }}
+            />
+            : {this.formatCountArrow()}
           </span>
         </div>
         <div>
@@ -304,6 +429,7 @@ class BasketButton extends Component {
             Type Down
           </button>
         </div>
+
         <div>
           <button
             type="button"

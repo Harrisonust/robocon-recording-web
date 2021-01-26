@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./styles/mainApp.css";
 import "./styles/panel-style.css";
 import "./styles/panel-list-style.css";
+import "./styles/recording.css";
 
 import Timer from "./components/Timer/timer";
 import Panel from "./components/Panel/Panel";
@@ -10,13 +11,12 @@ import GameField from "./components/GameField/GameField";
 import ScoreBoard from "./components/ScoreBoard/ScoreBoard";
 
 import Time from "./components/Timer/time";
-//init the timer by these value
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    //used for timer interval control
+    //used for interval control
     this.intervaID = {};
 
     this.state = {
@@ -33,16 +33,25 @@ class App extends Component {
       PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       arrowNumbers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       lastPots: [-1, -1],
-      //panel state
 
       //timer state
       countDownInitTime: new Time(1, 0, 0),
       nowTime: new Time(1, 0, 0),
       timerEnable: false,
       counting: false,
+
+      //panel state
+      restart: false,
+
+      //recording state
+      blue: [],
+      red: [],
     };
+
     //panel functions
     this.handleInfoCallBack = this.handleInfoCallBack.bind(this);
+    this.handleGreatVictory = this.handleGreatVictory.bind(this);
+    this.handleRecording = this.handleRecording.bind(this);
 
     //timer functions
     this.timeCountDown = this.timeCountDown.bind(this);
@@ -116,17 +125,82 @@ class App extends Component {
   };
 
   //Panel functions start here
-  handleInfoCallBack = (Data, index) => {
+  handleInfoCallBack = (Data, basket_index, index) => {
     var newScore = [this.state.Score[0], this.state.Score[1]];
+    var newArrowNumber = [];
+    var newPotsStatus = [];
 
-    if (index === 0) {
-      newScore[0] += Data;
+    if (Data !== 0) {
+      if (index === 0) {
+        newScore[0] += Data;
+      }
+      if (index === 1) {
+        basket_index += 5;
+        newScore[1] += Data;
+      }
+
+      var newPotsStatus = [];
+      for (var x = 0; x < this.state.PotsStatus.length; x++) {
+        if (x === basket_index)
+          newPotsStatus.push(this.state.PotsStatus[x] + 1);
+        else newPotsStatus.push(this.state.PotsStatus[x]);
+      }
+      this.setState({ PotsStatus: newPotsStatus });
+    } else if (Data === 0) {
+      if (index === 1) {
+        basket_index += 5;
+      }
     }
-    if (index === 1) {
-      newScore[1] += Data;
+
+    for (var x = 0; x < this.state.arrowNumbers.length; x++) {
+      if (x === basket_index)
+        newArrowNumber.push(this.state.arrowNumbers[x] + 1);
+      else newArrowNumber.push(this.state.arrowNumbers[x]);
     }
+    this.setState({ arrowNumbers: newArrowNumber });
 
     this.setState({ Score: newScore });
+  };
+
+  handleGreatVictory = (Named, index) => {
+    if (Named === "FINISHED") {
+      if (index === 0) {
+        alert("GREAT VICTORY FOR BLUE TEAM");
+      } else if (index === 1) {
+        alert("GREAT VICTORY FOR RED TEAM");
+      }
+      this.pauseTimer();
+    }
+  };
+
+  handleRecording = (Named, index) => {
+    if (Named !== "") {
+      if (index === 0) {
+        this.state.blue.push(
+          Named +
+            " at this time: " +
+            this.state.nowTime.minutes +
+            ":" +
+            this.state.nowTime.seconds +
+            ":" +
+            this.state.nowTime.milliseconds
+        );
+        this.setState(this.state.blue);
+      } else if (index === 1) {
+        this.state.red.push(
+          Named +
+            " at this time: " +
+            this.state.nowTime.minutes +
+            ":" +
+            this.state.nowTime.seconds +
+            ":" +
+            this.state.nowTime.milliseconds
+        );
+        console.log(this.state.red);
+
+        this.setState(this.state.red);
+      }
+    }
   };
 
   timeCountDown() {
@@ -177,6 +251,8 @@ class App extends Component {
         timerEnable: true,
         counting: true,
       });
+
+      this.setState({ restart: false });
     }
   }
   pauseTimer() {
@@ -192,8 +268,13 @@ class App extends Component {
       counting: false,
       timerEnable: false,
       nowTime: new Time(minutes, seconds, milliseconds),
+      Score: [0, 0],
+      blue: [],
+      red: [],
     });
     clearInterval(this.state.intervaID);
+
+    this.setState({ restart: true });
   }
   configUp() {
     var { minutes, seconds, milliseconds } = this.state.nowTime;
@@ -255,10 +336,18 @@ class App extends Component {
       <div className="mainPageStyle">
         <div className="row">
           <div className="column left" style={{ textAlign: "center" }}>
-            <ScoreBoard
+            {/*<ScoreBoard
               className="ScoreBoardCenter"
               Score={this.state.Score[0]}
-            />
+              index={0}
+            />*/}
+            <span
+              type="button"
+              className="badge"
+              style={{ fontSize: "400%", color: "blue" }}
+            >
+              Score : {this.state.Score[0]}
+            </span>
           </div>
           <div className="column middle">
             <Timer
@@ -276,19 +365,38 @@ class App extends Component {
             />
           </div>
           <div className="column right" style={{ textAlign: "center" }}>
-            <ScoreBoard
+            {/*<ScoreBoard
               className="ScoreBoardCenter"
               Score={this.state.Score[1]}
-            />
+              index={1}
+            />*/}
+            <span
+              type="button"
+              className="badge"
+              style={{ fontSize: "400%", color: "red" }}
+            >
+              Score : {this.state.Score[1]}
+            </span>
           </div>
         </div>
         <div className="horizontal-container">
-          <div>
+          <div style={{ color: "white", textAlign: "center" }}>
             <Panel
               score={this.state.Score[0]}
               handleInfoCallBack={this.handleInfoCallBack}
+              handleGreatVictory={this.handleGreatVictory}
+              handleRecording={this.handleRecording}
+              start={this.state.timerEnable}
+              restart={this.state.restart}
+              PotsStatus={this.state.PotsStatus}
               index={0}
             />
+            Blue Recording
+            <div className="divStyle">
+              {this.state.blue.map((blue) => (
+                <p>{blue}</p>
+              ))}
+            </div>
           </div>
           <GameField
             Score={this.state.Score}
@@ -296,12 +404,22 @@ class App extends Component {
             arrowNumbers={this.state.arrowNumbers}
             ScoreHandler={this.ScoreHandler}
           />
-          <div>
+          <div style={{ color: "white", textAlign: "center" }}>
             <Panel
               score={this.state.Score[1]}
               handleInfoCallBack={this.handleInfoCallBack}
+              handleGreatVictory={this.handleGreatVictory}
+              handleRecording={this.handleRecording}
+              start={this.state.timerEnable}
+              restart={this.state.restart}
               index={1}
             />
+            Red Recording
+            <div className="divStyle">
+              {this.state.red.map((red) => (
+                <p>{red}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
