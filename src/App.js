@@ -205,6 +205,8 @@ class App extends Component {
   };
 
   timeCountDown() {
+    console.log(this.state.PotsStatus);
+
     var { minutes, seconds, milliseconds } = this.state.nowTime;
     if (
       //check if the time is already 0
@@ -334,7 +336,7 @@ class App extends Component {
     this.setState({
       nowTime: this.state.countDownInitTime,
       Score: [0, 0],
-      potsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      PotsStatus: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       arrowNumbers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       lastPots: [-1, -1],
       blue: [],
@@ -347,11 +349,6 @@ class App extends Component {
       <div className="mainPageStyle">
         <div className="row">
           <div className="column left" style={{ textAlign: "center" }}>
-            {/*<ScoreBoard
-              className="ScoreBoardCenter"
-              Score={this.state.Score[0]}
-              index={0}
-            />*/}
             <span
               type="button"
               className="badge"
@@ -376,11 +373,6 @@ class App extends Component {
             />
           </div>
           <div className="column right" style={{ textAlign: "center" }}>
-            {/*<ScoreBoard
-              className="ScoreBoardCenter"
-              Score={this.state.Score[1]}
-              index={1}
-            />*/}
             <span
               type="button"
               className="badge"
