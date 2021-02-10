@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import fire from "./firebase";
 
 import "./styles/mainApp.css";
 import "./styles/panel-style.css";
 import "./styles/panel-list-style.css";
 import "./styles/recording.css";
+import Logo from "./img/logo.png";
 
 import Timer from "./components/Timer/timer";
 import Panel from "./components/Panel/Panel";
 import GameField from "./components/GameField/GameField";
-import ScoreBoard from "./components/ScoreBoard/ScoreBoard";
 
 import Time from "./components/Timer/time";
 
@@ -158,7 +159,7 @@ class App extends Component {
         newArrowNumber.push(this.state.arrowNumbers[x] + 1);
       else newArrowNumber.push(this.state.arrowNumbers[x]);
     }
-    this.setState({ arrowNumbers: newArrowNumber });
+    this.setState({ arrowNumbers: newPotsStatus });
 
     this.setState({ Score: newScore });
   };
@@ -197,16 +198,22 @@ class App extends Component {
             ":" +
             this.state.nowTime.milliseconds
         );
-        console.log(this.state.red);
-
         this.setState(this.state.red);
       }
     }
   };
 
-  timeCountDown() {
-    console.log(this.state.PotsStatus);
+  handleSubmit = () => {
+    let BlueRef = fire.database().ref("Blue");
 
+    BlueRef.push().set(this.state.blue);
+
+    let RedRef = fire.database().ref("Red");
+
+    RedRef.push().set(this.state.red);
+  };
+
+  timeCountDown() {
     var { minutes, seconds, milliseconds } = this.state.nowTime;
     if (
       //check if the time is already 0
@@ -346,13 +353,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="mainPageStyle">
+      <div className="back">
         <div className="row">
           <div className="column left" style={{ textAlign: "center" }}>
+            <img
+              src={Logo}
+              style={{
+                opacity: "0.1",
+                position: "absolute",
+                width: "100%",
+                pointerEvents: "none",
+              }}
+            />
             <span
               type="button"
               className="badge"
-              style={{ fontSize: "400%", color: "blue" }}
+              style={{ fontSize: "400%", color: "rgb(0, 198, 248)" }}
             >
               Score : {this.state.Score[0]}
             </span>
@@ -382,8 +398,16 @@ class App extends Component {
             </span>
           </div>
         </div>
-        <div className="horizontal-container">
-          <div style={{ color: "white", textAlign: "center" }}>
+        <div className="row">
+          <div
+            className="column left"
+            style={{
+              color: "white",
+              textAlign: "center",
+              position: "relative",
+              height: "100vh",
+            }}
+          >
             <Panel
               score={this.state.Score[0]}
               handleInfoCallBack={this.handleInfoCallBack}
@@ -401,13 +425,38 @@ class App extends Component {
               ))}
             </div>
           </div>
-          <GameField
-            Score={this.state.Score}
-            PotsStatus={this.state.PotsStatus}
-            arrowNumbers={this.state.arrowNumbers}
-            ScoreHandler={this.ScoreHandler}
-          />
-          <div style={{ color: "white", textAlign: "center" }}>
+          <div className="column middle" style={{ position: "relative" }}>
+            <GameField
+              Score={this.state.Score}
+              PotsStatus={this.state.PotsStatus}
+              arrowNumbers={this.state.arrowNumbers}
+              ScoreHandler={this.ScoreHandler}
+            />
+            <div style={{ textAlign: "center" }}>
+              <button
+                style={{
+                  width: "100%",
+                  padding: "8px 8px",
+                  borderRadius: 20,
+                  fontSize: "130%",
+                  color: "white",
+                  borderColor: "white",
+                  background: "transparent",
+                }}
+                onClick={() => this.handleSubmit()}
+              >
+                Update
+              </button>
+            </div>
+          </div>
+          <div
+            className="column right"
+            style={{
+              color: "white",
+              textAlign: "center",
+              position: "relative",
+            }}
+          >
             <Panel
               score={this.state.Score[1]}
               handleInfoCallBack={this.handleInfoCallBack}

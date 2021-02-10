@@ -1,4 +1,7 @@
 .GameFieldImage {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
   display: block;
   margin: auto;
 }
@@ -21,57 +24,57 @@
 
 .p0 {
   position: relative;
-  top: -330px;
-  left: 180px;
+  top: -19vw;
+  left: 11vw;
 }
 
 .p1 {
   position: relative;
-  top: -323px;
-  left: 180px;
+  top: -23vw;
+  left: 11vw;
 }
 
 .p2 {
   position: relative;
-  top: -490px;
-  left: 260px;
+  top: -32.4vw;
+  left: 16.5vw;
 }
 
 .p3 {
   position: relative;
-  top: -388px;
-  left: 260px;
+  top: -26.5vw;
+  left: 16.5vw;
 }
 
 .p4 {
   position: relative;
-  top: -285px;
-  left: 260px;
+  top: -20vw;
+  left: 17vw;
 }
 
 .p5 {
   position: relative;
-  top: -562px;
-  left: 335px;
+  top: -37.5vw;
+  left: 19.9vw;
 }
 .p6 {
   position: relative;
-  top: -460px;
-  left: 335px;
+  top: -31.5vw;
+  left: 19.9vw;
 }
 .p7 {
   position: relative;
-  top: -357px;
-  left: 335px;
+  top: -25.2vw;
+  left: 19.9vw;
 }
 .p8 {
   position: relative;
-  top: -523px;
-  left: 417px;
+  top: -33vw;
+  left: 27vw;
 }
 
 .p9 {
   position: relative;
-  top: -517px;
-  left: 417px;
+  top: -37vw;
+  left: 27vw;
 }

@@ -18,7 +18,7 @@ class Panel extends Component {
   UNSAFE_componentWillReceiveProps(newProps) {
     if (this.state.start !== newProps.start) {
       if (newProps.start === true) {
-        this.setState({ initial: "btn" });
+        this.setState({ initial: "button" });
         this.setState({ start: newProps.start });
       } else if (newProps.start === false) {
         this.setState({ initial: "disabled" });
